@@ -31,12 +31,18 @@ public class BarrackService {
     }
 
     private Troop createTroop(TrainTroopRequest request) {
-
-        if (request.getTroop() == Trooper.ARCHER) {
-            return new Archers();
-        }
-        return new Barbarian();
+        return (request.getTroop() == Trooper.ARCHER) ? new Archers() : new Barbarian();
     }
 
 
+    public void processWaitingList() {
+        int freeSpace = barrack.getCapacity() - barrack.getTroops().size();
+        if (freeSpace > 0) {
+            int troopsToMove = Math.min(freeSpace, barrack.getWaitingList().size());
+            for (int i = 0; i < troopsToMove; i++) {
+                Troop troop = barrack.getWaitingList().remove(0);
+                barrack.getTroops().add(troop);
+            }
+        }
+    }
 }

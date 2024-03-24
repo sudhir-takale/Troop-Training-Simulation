@@ -24,13 +24,9 @@ class BarrackServiceTest {
     }
 
     @Test
-    void shouldThrowInvalidCountExceptionIfCountIsZero() throws InvalidCountException {
-        // Act
-        // Assert
-        Assertions.assertThrows(InvalidCountException.class, () -> {
-            new TrainTroopRequest(Trooper.ARCHER, 0);
-
-        });
+    void shouldThrowInvalidCountExceptionIfCountIsZero() {
+        // Act & Assert
+        Assertions.assertThrows(InvalidCountException.class, () -> new TrainTroopRequest(Trooper.ARCHER, 0));
     }
 
     @Test
@@ -42,6 +38,12 @@ class BarrackServiceTest {
         // Assert
         List<Troop> troops = barrack.getTroops();
         Assertions.assertEquals(3, troops.size());
+    }
+
+    @Test
+    void shouldNotAddTroopsIfRequestIsNull() {
+        // Act & Assert
+        Assertions.assertThrows(NullPointerException.class, () -> barrackService.addTroops(null));
     }
 
     @Test
@@ -58,5 +60,38 @@ class BarrackServiceTest {
         Assertions.assertEquals(5, waitingList.size());
     }
 
+    @Test
+    void shouldMoveTroopsFromWaitingListToTroopsListWhenSpaceAvailable() throws InvalidCountException {
+        // Arrange
+        for (int i = 0; i < barrack.getCapacity(); i++) {
+            barrack.getTroops().add(new Archers());
+        }
+        TrainTroopRequest request = new TrainTroopRequest(Trooper.BARBARIAN, 5);
+        barrackService.addTroops(request);
+        // Act
+        barrack.getTroops().clear();
+        barrackService.processWaitingList();
+        // Assert
+        List<Troop> troops = barrack.getTroops();
+        List<Troop> waitingList = barrack.getWaitingList();
+        Assertions.assertEquals(5, troops.size());
+        Assertions.assertTrue(waitingList.isEmpty());
+    }
+
+    @Test
+    void shouldNotMoveTroopsFromWaitingListToTroopsListWhenSpaceNotAvailable() throws InvalidCountException {
+        // Arrange
+        for (int i = 0; i < barrack.getCapacity(); i++) {
+            barrack.getTroops().add(new Archers());
+        }
+        // Act
+        TrainTroopRequest request = new TrainTroopRequest(Trooper.BARBARIAN, 5);
+        barrackService.addTroops(request);
+        // Assert
+        List<Troop> troops = barrack.getTroops();
+        List<Troop> waitingList = barrack.getWaitingList();
+        Assertions.assertEquals(troops.size(), barrack.getCapacity());
+        Assertions.assertEquals(5, waitingList.size());
+    }
 
 }
