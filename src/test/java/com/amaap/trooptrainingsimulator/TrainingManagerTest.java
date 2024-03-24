@@ -2,7 +2,6 @@ package com.amaap.trooptrainingsimulator;
 
 import com.amaap.trooptrainingsimulator.domain.models.Barrack;
 import com.amaap.trooptrainingsimulator.domain.models.TrainTroopRequest;
-import com.amaap.trooptrainingsimulator.domain.models.Troop;
 import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 import com.amaap.trooptrainingsimulator.domain.models.exceptions.InvalidCountException;
 import com.amaap.trooptrainingsimulator.domain.services.BarrackService;
@@ -85,8 +84,8 @@ class TrainingManagerTest {
         trainingManager.trainTheNewTroop(Trooper.ARCHER, 5);
         trainingManager.trainTheNewTroop(Trooper.BARBARIAN, 8);
         // Act
-        Troop trainedTroop = trainingManager.processPendingRequests();
-        Assertions.assertNotNull(trainedTroop);
+        boolean trainedTroop = trainingManager.processPendingRequests();
+        Assertions.assertTrue(trainedTroop);
 
     }
 

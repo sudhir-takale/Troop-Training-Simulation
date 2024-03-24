@@ -2,7 +2,6 @@ package com.amaap.trooptrainingsimulator;
 
 import com.amaap.trooptrainingsimulator.domain.models.Barrack;
 import com.amaap.trooptrainingsimulator.domain.models.TrainTroopRequest;
-import com.amaap.trooptrainingsimulator.domain.models.Troop;
 import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 import com.amaap.trooptrainingsimulator.domain.models.exceptions.InvalidCountException;
 import com.amaap.trooptrainingsimulator.domain.services.BarrackService;
@@ -37,7 +36,7 @@ public class TrainingManager {
         return pendingRequests;
     }
 
-    public Troop processPendingRequests() throws InvalidCountException {
+    public boolean processPendingRequests() throws InvalidCountException {
         for (TrainTroopRequest request : pendingRequests) {
             barrackService.addTroops(request);
         }
