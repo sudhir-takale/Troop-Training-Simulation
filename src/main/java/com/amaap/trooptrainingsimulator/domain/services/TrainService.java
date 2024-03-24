@@ -9,7 +9,6 @@ public class TrainService {
 
 
     public boolean trainTroops(Barrack barrack) {
-
         Iterator<Troop> iterator = barrack.getTroops().iterator();
         while (iterator.hasNext()) {
             Troop troop = iterator.next();
@@ -23,6 +22,5 @@ public class TrainService {
     private void startTraining(Troop troop) {
         System.out.println("Training...");
         System.out.println("Training complete. troops are available in the troop camp.");
-
     }
 }

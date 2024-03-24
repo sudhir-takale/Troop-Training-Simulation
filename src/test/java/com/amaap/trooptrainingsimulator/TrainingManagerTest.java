@@ -89,4 +89,20 @@ class TrainingManagerTest {
 
     }
 
+    @Test
+    void shouldBeAbleToShowAllTrainedTroopAvailableInArmyCamp() throws InvalidCountException {
+        // Arrange
+        trainingManager.trainTheNewTroop(Trooper.ARCHER, 5);
+        trainingManager.trainTheNewTroop(Trooper.BARBARIAN, 8);
+        // Act
+        trainingManager.processPendingRequests();
+        boolean result = trainingManager.startTraining();
+        //Assert
+        Assertions.assertTrue(result);
+        Assertions.assertEquals(0, barrack.getTroops().size());
+
+    }
+
+
+
 }

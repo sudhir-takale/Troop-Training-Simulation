@@ -40,7 +40,12 @@ public class TrainingManager {
         for (TrainTroopRequest request : pendingRequests) {
             barrackService.addTroops(request);
         }
-        return trainingService.trainTroops(barrack);
+        return true;
 
+    }
+
+
+    public boolean startTraining() {
+        return trainingService.trainTroops(barrack);
     }
 }

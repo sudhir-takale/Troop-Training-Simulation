@@ -13,7 +13,7 @@ class TrainServiceTest {
     private Barrack barrack;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         trainService = new TrainService();
         barrack = new Barrack();
         barrack.getTroops().add(new Archers());
@@ -34,9 +34,10 @@ class TrainServiceTest {
     @Test
     void shouldRemoveTroopFromTheListAfterTraining() {
 //        Act
-        boolean result = trainService.trainTroops(barrack);
+        trainService.trainTroops(barrack);
         Assertions.assertEquals(0, barrack.getTroops().size());
     }
+
     @Test
     void shouldAbleToTrainAllTroopsRegardlessOfType() {
 //        Arrange
