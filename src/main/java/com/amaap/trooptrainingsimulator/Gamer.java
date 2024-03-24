@@ -1,5 +1,6 @@
 package com.amaap.trooptrainingsimulator;
 
+import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 import com.amaap.trooptrainingsimulator.domain.models.exceptions.InvalidCountException;
 
 public class Gamer {
@@ -9,8 +10,8 @@ public class Gamer {
         this.trainingManager = trainingManager;
     }
 
-    public boolean trainTheNewTroop(String archers, int count) throws InvalidCountException {
+    public boolean trainTheNewTroop(Trooper troop, int count) throws InvalidCountException {
 
-        return trainingManager.trainTheNewTroop(archers, count);
+        return trainingManager.trainTheNewTroop(troop, count);
     }
 }

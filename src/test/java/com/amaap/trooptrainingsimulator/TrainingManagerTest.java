@@ -1,5 +1,6 @@
 package com.amaap.trooptrainingsimulator;
 
+import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 import com.amaap.trooptrainingsimulator.domain.models.exceptions.InvalidCountException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +37,7 @@ class TrainingManagerTest {
     @Test
     void shouldBeAbleToRequestToTrainTheTroopers() throws InvalidCountException {
 //        Act
-        boolean result = trainingManager.trainTheNewTroop("Archers", 3);
+        boolean result = trainingManager.trainTheNewTroop(Trooper.ARCHER, 3);
 //        Assert
         Assertions.assertTrue(result);
     }
