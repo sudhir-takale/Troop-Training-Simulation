@@ -18,6 +18,7 @@ public class GameTest {
         Gamer gamer = new Gamer(trainingManager);
 //        Act
         boolean request = gamer.trainTheNewTroop(Trooper.ARCHER, 3);
+
 //         Assert
         Assertions.assertTrue(request);
 

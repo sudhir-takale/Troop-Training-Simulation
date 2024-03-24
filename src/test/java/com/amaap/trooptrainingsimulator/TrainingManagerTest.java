@@ -111,13 +111,13 @@ class TrainingManagerTest {
     void shouldAbleToViewAllTrainedTroopInArmyCamp() throws InvalidCountException {
         // Arrange
         trainingManager.trainTheNewTroop(Trooper.ARCHER, 5);
-        trainingManager.trainTheNewTroop(Trooper.BARBARIAN, 8);
+        trainingManager.trainTheNewTroop(Trooper.BARBARIAN, 2);
         // Act
         trainingManager.processPendingRequests();
         trainingManager.startTraining();
         Map<Trooper, Integer> map = trainingManager.viewTrainedTroop();
         //Assert
-
+        Assertions.assertEquals(2, map.size());
 
     }
 

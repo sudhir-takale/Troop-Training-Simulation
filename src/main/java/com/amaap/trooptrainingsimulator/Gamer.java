@@ -11,7 +11,9 @@ public class Gamer {
     }
 
     public boolean trainTheNewTroop(Trooper troop, int count) throws InvalidCountException {
-
         return trainingManager.trainTheNewTroop(troop, count);
     }
+
+
+
 }

@@ -1,6 +1,7 @@
 package com.amaap.trooptrainingsimulator.models;
 
 import com.amaap.trooptrainingsimulator.domain.models.Troop;
+import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 
 public class Barbarian extends Troop {
 
@@ -9,5 +10,8 @@ public class Barbarian extends Troop {
         this.setTime(6);
         this.setWeapon("Bow And Arrow");
 
+    }
+    public Trooper getTrooperType() {
+        return Trooper.BARBARIAN;
     }
 }

@@ -19,4 +19,6 @@ public class Barrack {
     public List<Troop> getWaitingList() {
         return waitingList;
     }
+
+
 }

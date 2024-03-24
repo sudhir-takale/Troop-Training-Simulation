@@ -14,11 +14,11 @@ import java.util.Map;
 
 public class TrainingManager {
 
-    private List<TrainTroopRequest> pendingRequests;
     private final TrainService trainingService;
     private final BarrackService barrackService;
     private final Barrack barrack;
     private final ArmyCamp armyCamp;
+    private List<TrainTroopRequest> pendingRequests;
 
 
     public TrainingManager(TrainService trainingService, BarrackService barrackService, Barrack barrack, ArmyCamp armyCamp) {

@@ -1,6 +1,7 @@
 package com.amaap.trooptrainingsimulator.domain.services;
 
 import com.amaap.trooptrainingsimulator.domain.models.Barrack;
+import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 import com.amaap.trooptrainingsimulator.models.Archers;
 import com.amaap.trooptrainingsimulator.models.Barbarian;
 import com.amaap.trooptrainingsimulator.viewer.ArmyCamp;
@@ -16,6 +17,7 @@ class TrainServiceTest {
 
     @BeforeEach
     void setUp() {
+        armyCamp = new ArmyCamp();
         trainService = new TrainService(armyCamp);
         barrack = new Barrack();
         barrack.getTroops().add(new Archers());
@@ -23,6 +25,7 @@ class TrainServiceTest {
         barrack.getTroops().add(new Archers());
         barrack.getTroops().add(new Archers());
         barrack.getTroops().add(new Archers());
+        barrack.getTroops().add(new Barbarian());
 
     }
 
@@ -52,4 +55,31 @@ class TrainServiceTest {
         Assertions.assertEquals(0, barrack.getTroops().size());
     }
 
+    @Test
+    void shouldAbleToUpdateTrainedTroopsCountInArmyCamp() {
+        // Act
+        trainService.trainTroops(barrack);
+        // Assert
+        Assertions.assertEquals(5, armyCamp.getTrainedTroops().get(Trooper.ARCHER));
+    }
+
+    @Test
+    void shouldUpdateTrainedTroopsCountInArmyCamp() {
+        // Act
+        trainService.trainTroops(barrack);
+        // Assert
+        Assertions.assertEquals(5, armyCamp.getTrainedTroops().get(Trooper.ARCHER));
+        Assertions.assertEquals(1, armyCamp.getTrainedTroops().get(Trooper.BARBARIAN));
+
+        barrack.getTroops().add(new Archers());
+        barrack.getTroops().add(new Archers());
+        barrack.getTroops().add(new Archers());
+        barrack.getTroops().add(new Archers());
+        barrack.getTroops().add(new Archers());
+        barrack.getTroops().add(new Barbarian());
+        trainService.trainTroops(barrack);
+        Assertions.assertEquals(10, armyCamp.getTrainedTroops().get(Trooper.ARCHER));
+        Assertions.assertEquals(2, armyCamp.getTrainedTroops().get(Trooper.BARBARIAN));
+
+    }
 }
