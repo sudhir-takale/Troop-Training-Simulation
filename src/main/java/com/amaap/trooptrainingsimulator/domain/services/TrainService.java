@@ -2,11 +2,17 @@ package com.amaap.trooptrainingsimulator.domain.services;
 
 import com.amaap.trooptrainingsimulator.domain.models.Barrack;
 import com.amaap.trooptrainingsimulator.domain.models.Troop;
+import com.amaap.trooptrainingsimulator.viewer.ArmyCamp;
 
 import java.util.Iterator;
 
 public class TrainService {
 
+    private ArmyCamp armyCamp;
+
+    public TrainService(ArmyCamp armyCamp) {
+        this.armyCamp = armyCamp;
+    }
 
     public boolean trainTroops(Barrack barrack) {
         Iterator<Troop> iterator = barrack.getTroops().iterator();

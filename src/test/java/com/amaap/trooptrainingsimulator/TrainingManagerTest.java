@@ -6,30 +6,34 @@ import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 import com.amaap.trooptrainingsimulator.domain.models.exceptions.InvalidCountException;
 import com.amaap.trooptrainingsimulator.domain.services.BarrackService;
 import com.amaap.trooptrainingsimulator.domain.services.TrainService;
+import com.amaap.trooptrainingsimulator.viewer.ArmyCamp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 class TrainingManagerTest {
     private TrainingManager trainingManager;
     private TrainService trainingService;
     private BarrackService barrackService;
     private Barrack barrack;
+    private ArmyCamp armyCamp;
 
     @BeforeEach
     void setup() {
-        trainingService = new TrainService();
+        armyCamp = new ArmyCamp();
+        trainingService = new TrainService(armyCamp);
         barrack = new Barrack();
         barrackService = new BarrackService(barrack);
-        trainingManager = new TrainingManager(trainingService, barrackService, barrack);
+        trainingManager = new TrainingManager(trainingService, barrackService, barrack, armyCamp);
     }
 
     @Test
     void shouldBeAbleToCreateTrainingManager() {
         // Arrange & Act
-        TrainingManager trainingManager = new TrainingManager(trainingService, barrackService, barrack);
+        TrainingManager trainingManager = new TrainingManager(trainingService, barrackService, barrack, armyCamp);
         // Assert
         Assertions.assertNotNull(trainingManager);
     }
@@ -103,6 +107,19 @@ class TrainingManagerTest {
 
     }
 
+    @Test
+    void shouldAbleToViewAllTrainedTroopInArmyCamp() throws InvalidCountException {
+        // Arrange
+        trainingManager.trainTheNewTroop(Trooper.ARCHER, 5);
+        trainingManager.trainTheNewTroop(Trooper.BARBARIAN, 8);
+        // Act
+        trainingManager.processPendingRequests();
+        trainingManager.startTraining();
+        Map<Trooper, Integer> map = trainingManager.viewTrainedTroop();
+        //Assert
+
+
+    }
 
 
 }
