@@ -7,11 +7,12 @@ public class GameTest {
 
     @Test
     void shouldBeAbeleToMakeAsRequestToTrainTheTrooper() {
-        TrainingManager  trainingManager = new TrainingManager();
+//        Arrange
+        TrainingManager trainingManager = new TrainingManager();
         Gamer gamer = new Gamer(trainingManager);
-
-        boolean request = gamer.trainTheNewTroop();
-
+//        Act
+        boolean request = gamer.trainTheNewTroop("Archers", 3);
+//         Assert
         Assertions.assertTrue(request);
 
 

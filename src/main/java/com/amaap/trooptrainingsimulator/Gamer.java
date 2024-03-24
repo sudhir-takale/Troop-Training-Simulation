@@ -7,8 +7,8 @@ public class Gamer {
         this.trainingManager = trainingManager;
     }
 
-    public boolean trainTheNewTroop() {
+    public boolean trainTheNewTroop(String archers, int count) {
 
-        return trainingManager.trainTheNewTroop();
+        return trainingManager.trainTheNewTroop(archers, count);
     }
 }
