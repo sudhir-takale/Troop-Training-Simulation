@@ -25,7 +25,7 @@ public class TrainingManager {
     }
 
     public boolean trainTheNewTroop(Trooper troop, int count) throws InvalidCountException {
-        if (count < 1 || count > 10) throw new InvalidCountException(count + " Count should be greater than 10!");
+        if (count < 1 || count > 10) throw new InvalidCountException(count + " Count should not be greater than 10!");
         TrainTroopRequest trainRequest = new TrainTroopRequest(troop, count);
         pendingRequests.add(trainRequest);
         return true;
@@ -46,19 +46,21 @@ public class TrainingManager {
     public void processPendingRequests() throws InvalidCountException {
         for (TrainTroopRequest request : pendingRequests) {
             int numberOfTrooper = request.getCount();
+
             for (int i = 0; i < numberOfTrooper; i++) {
+                Troop troop = createNewTroopers(request);
 
                 if (barrack.getTroops().size() < barrack.getCapacity()) {
-                    Troop troop = createNewTroopers(request);
                     System.out.println(troop);
+                    System.out.println(troop.getClass());
                     barrack.getTroops().add(troop);
+                } else {
+                    barrack.getWaitingList().add(troop);
                 }
-
             }
         }
-        trainingService.trainTroops(new TrainTroopRequest(Trooper.ARCHER, 4), barrack);
-        pendingRequests.clear();
 
+        trainingService.trainTroops(new TrainTroopRequest(Trooper.ARCHER, 4), barrack);
     }
 
 }

@@ -66,15 +66,29 @@ class TrainingManagerTest {
     @Test
     void shouldBeAbleToProcessPendingRequests() throws InvalidCountException {
         // Arrange
-        trainingManager.trainTheNewTroop(Trooper.ARCHER, 1);
+        trainingManager.trainTheNewTroop(Trooper.ARCHER, 2);
         trainingManager.trainTheNewTroop(Trooper.BARBARIAN, 2);
         // Act
         trainingManager.processPendingRequests();
         // Assert
         List<TrainTroopRequest> pendingRequests = trainingManager.getPendingRequests();
         Assertions.assertEquals(4, barrack.getTroops().size());
-        Assertions.assertTrue(pendingRequests.isEmpty());
     }
+
+    @Test
+    void shouldAbleToAddNewTroopsToWaitingListWhenBarrackCapacityGetFilled() throws InvalidCountException {
+        // Arrange
+        trainingManager.trainTheNewTroop(Trooper.ARCHER, 5);
+        trainingManager.trainTheNewTroop(Trooper.BARBARIAN, 8);
+        // Act
+        trainingManager.processPendingRequests();
+        // Assert
+        List<TrainTroopRequest> pendingRequests = trainingManager.getPendingRequests();
+        Assertions.assertEquals(10, barrack.getTroops().size());
+        Assertions.assertEquals(3, barrack.getWaitingList().size());
+    }
+
+
 
 
 }
