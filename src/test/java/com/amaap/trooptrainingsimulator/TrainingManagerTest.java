@@ -21,15 +21,15 @@ class TrainingManagerTest {
     @BeforeEach
     void setup() {
         trainingService = new TrainService();
-        barrack = new Barrack(); // Initialize Barrack first
-        barrackService = new BarrackService(barrack); // Then use Barrack to initialize BarrackService
-        trainingManager = new TrainingManager(trainingService, barrackService);
+        barrack = new Barrack();
+        barrackService = new BarrackService(barrack);
+        trainingManager = new TrainingManager(trainingService, barrackService, barrack);
     }
 
     @Test
     void shouldBeAbleToCreateTrainingManager() {
         // Arrange & Act
-        TrainingManager trainingManager = new TrainingManager(trainingService, barrackService);
+        TrainingManager trainingManager = new TrainingManager(trainingService, barrackService, barrack);
         // Assert
         Assertions.assertNotNull(trainingManager);
     }

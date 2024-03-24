@@ -1,5 +1,6 @@
 package com.amaap.trooptrainingsimulator;
 
+import com.amaap.trooptrainingsimulator.domain.models.Barrack;
 import com.amaap.trooptrainingsimulator.domain.models.TrainTroopRequest;
 import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 import com.amaap.trooptrainingsimulator.domain.models.exceptions.InvalidCountException;
@@ -14,10 +15,13 @@ public class TrainingManager {
     private List<TrainTroopRequest> pendingRequests;
     private TrainService trainingService;
     private BarrackService barrackService;
+    private Barrack barrack;
 
-    public TrainingManager(TrainService trainingService, BarrackService barrackService) {
+
+    public TrainingManager(TrainService trainingService, BarrackService barrackService, Barrack barrack) {
         this.trainingService = trainingService;
         this.barrackService = barrackService;
+        this.barrack = barrack;
         pendingRequests = new ArrayList<>();
     }
 
@@ -36,6 +40,7 @@ public class TrainingManager {
         for (TrainTroopRequest request : pendingRequests) {
             barrackService.addTroops(request);
         }
+        trainingService.trainTroops(barrack);
         pendingRequests.clear();
     }
 }

@@ -13,7 +13,7 @@ public class GameTest {
     @Test
     void shouldBeAbeleToMakeAsRequestToTrainTheTrooper() throws InvalidCountException {
 //        Arrange
-        TrainingManager trainingManager = new TrainingManager(new TrainService(), new BarrackService(new Barrack()));
+        TrainingManager trainingManager = new TrainingManager(new TrainService(), new BarrackService(new Barrack()), new Barrack());
         Gamer gamer = new Gamer(trainingManager);
 //        Act
         boolean request = gamer.trainTheNewTroop(Trooper.ARCHER, 3);
