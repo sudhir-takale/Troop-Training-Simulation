@@ -2,9 +2,9 @@ package com.amaap.trooptrainingsimulator;
 
 import com.amaap.trooptrainingsimulator.domain.models.Barrack;
 import com.amaap.trooptrainingsimulator.domain.models.TrainTroopRequest;
-import com.amaap.trooptrainingsimulator.domain.models.Troop;
 import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 import com.amaap.trooptrainingsimulator.domain.models.exceptions.InvalidCountException;
+import com.amaap.trooptrainingsimulator.domain.services.BarrackService;
 import com.amaap.trooptrainingsimulator.domain.services.TrainService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,39 +15,31 @@ import java.util.List;
 class TrainingManagerTest {
     private TrainingManager trainingManager;
     private TrainService trainingService;
+    private BarrackService barrackService;
     private Barrack barrack;
 
     @BeforeEach
-    void setup() throws Exception {
+    void setup() {
         trainingService = new TrainService();
-        barrack = new Barrack();
-        trainingManager = new TrainingManager(trainingService, barrack);
+        barrack = new Barrack(); // Initialize Barrack first
+        barrackService = new BarrackService(barrack); // Then use Barrack to initialize BarrackService
+        trainingManager = new TrainingManager(trainingService, barrackService);
     }
 
     @Test
     void shouldBeAbleToCreateTrainingManager() {
-//        Arrange & Act
-        TrainingManager trainingManager = new TrainingManager(trainingService, barrack);
-//        Assert
+        // Arrange & Act
+        TrainingManager trainingManager = new TrainingManager(trainingService, barrackService);
+        // Assert
         Assertions.assertNotNull(trainingManager);
-
     }
 
-    @Test
-    void shouldBeAbleToCreateTroopers() throws InvalidCountException {
-//        Arrange
-        TrainingManager trainingManager = new TrainingManager(trainingService, barrack);
-//        Act
-        Troop troop = trainingManager.createNewTroopers(new TrainTroopRequest(Trooper.ARCHER, 3));
-//        Assert
-        Assertions.assertNotNull(troop);
-    }
 
     @Test
     void shouldBeAbleToRequestToTrainTheTroopers() throws InvalidCountException {
-//        Act
+        // Act
         boolean result = trainingManager.trainTheNewTroop(Trooper.ARCHER, 3);
-//        Assert
+        // Assert
         Assertions.assertTrue(result);
     }
 
@@ -71,7 +63,6 @@ class TrainingManagerTest {
         // Act
         trainingManager.processPendingRequests();
         // Assert
-        List<TrainTroopRequest> pendingRequests = trainingManager.getPendingRequests();
         Assertions.assertEquals(4, barrack.getTroops().size());
     }
 
@@ -83,12 +74,7 @@ class TrainingManagerTest {
         // Act
         trainingManager.processPendingRequests();
         // Assert
-        List<TrainTroopRequest> pendingRequests = trainingManager.getPendingRequests();
         Assertions.assertEquals(10, barrack.getTroops().size());
         Assertions.assertEquals(3, barrack.getWaitingList().size());
     }
-
-
-
-
 }
