@@ -2,6 +2,7 @@ package com.amaap.trooptrainingsimulator;
 
 import com.amaap.trooptrainingsimulator.domain.models.Barrack;
 import com.amaap.trooptrainingsimulator.domain.models.TrainTroopRequest;
+import com.amaap.trooptrainingsimulator.domain.models.Troop;
 import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 import com.amaap.trooptrainingsimulator.domain.models.exceptions.InvalidCountException;
 import com.amaap.trooptrainingsimulator.domain.services.BarrackService;
@@ -77,4 +78,16 @@ class TrainingManagerTest {
         Assertions.assertEquals(10, barrack.getTroops().size());
         Assertions.assertEquals(3, barrack.getWaitingList().size());
     }
+
+    @Test
+    void shouldBeAbleToTrainTheNewTroops() throws InvalidCountException {
+        // Arrange
+        trainingManager.trainTheNewTroop(Trooper.ARCHER, 5);
+        trainingManager.trainTheNewTroop(Trooper.BARBARIAN, 8);
+        // Act
+        Troop trainedTroop = trainingManager.processPendingRequests();
+        Assertions.assertNotNull(trainedTroop);
+
+    }
+
 }
