@@ -50,7 +50,7 @@ Domain: Training Simulation
 Troop
   - time
   - cost
-  - 
+
 - Archers extends troop 
    - set values
   
@@ -103,7 +103,19 @@ armyCamp
   - display troops count
   - maintains map 
 
+### GameManager
+  - has access to 
+      - request new troopers
+      - view troops count
 
+### Manager 
+    - manages everything
+        - create new archers
+        - create barbarians
+        - send To train them
+
+### Business requirements
+    - actual implementation
 
 
 
