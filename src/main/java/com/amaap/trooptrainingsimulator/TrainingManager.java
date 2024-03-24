@@ -1,7 +1,7 @@
 package com.amaap.trooptrainingsimulator;
 
-import com.amaap.trooptrainingsimulator.domain.models.Archers;
-import com.amaap.trooptrainingsimulator.domain.models.Barbarian;
+import com.amaap.trooptrainingsimulator.models.Archers;
+import com.amaap.trooptrainingsimulator.models.Barbarian;
 
 public class TrainingManager {
     public boolean trainTheNewTroop(String archers, int count) {

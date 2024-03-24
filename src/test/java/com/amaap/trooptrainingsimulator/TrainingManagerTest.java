@@ -23,5 +23,8 @@ class TrainingManagerTest {
         Assertions.assertEquals(1, result);
     }
 
+    
+
+
 
 }
