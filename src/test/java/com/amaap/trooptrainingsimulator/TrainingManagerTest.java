@@ -2,6 +2,7 @@ package com.amaap.trooptrainingsimulator;
 
 import com.amaap.trooptrainingsimulator.domain.models.Barrack;
 import com.amaap.trooptrainingsimulator.domain.models.TrainTroopRequest;
+import com.amaap.trooptrainingsimulator.domain.models.Troop;
 import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 import com.amaap.trooptrainingsimulator.domain.models.exceptions.InvalidCountException;
 import com.amaap.trooptrainingsimulator.domain.services.TrainService;
@@ -33,13 +34,13 @@ class TrainingManagerTest {
     }
 
     @Test
-    void shouldBeAbleToCreateTroopers() {
+    void shouldBeAbleToCreateTroopers() throws InvalidCountException {
 //        Arrange
         TrainingManager trainingManager = new TrainingManager(trainingService, barrack);
 //        Act
-        int result = trainingManager.createNewTroopers();
+        Troop troop = trainingManager.createNewTroopers(new TrainTroopRequest(Trooper.ARCHER, 3));
 //        Assert
-        Assertions.assertEquals(1, result);
+        Assertions.assertNotNull(troop);
     }
 
     @Test
@@ -65,11 +66,13 @@ class TrainingManagerTest {
     @Test
     void shouldBeAbleToProcessPendingRequests() throws InvalidCountException {
         // Arrange
-        trainingManager.trainTheNewTroop(Trooper.ARCHER, 3);
+        trainingManager.trainTheNewTroop(Trooper.ARCHER, 1);
+        trainingManager.trainTheNewTroop(Trooper.BARBARIAN, 2);
         // Act
         trainingManager.processPendingRequests();
         // Assert
         List<TrainTroopRequest> pendingRequests = trainingManager.getPendingRequests();
+        Assertions.assertEquals(4, barrack.getTroops().size());
         Assertions.assertTrue(pendingRequests.isEmpty());
     }
 

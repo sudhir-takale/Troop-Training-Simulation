@@ -9,4 +9,6 @@ public class Archers extends Troop {
         this.setTime(3);
         this.setCost(10);
     }
+
+
 }

@@ -2,6 +2,7 @@ package com.amaap.trooptrainingsimulator;
 
 import com.amaap.trooptrainingsimulator.domain.models.Barrack;
 import com.amaap.trooptrainingsimulator.domain.models.TrainTroopRequest;
+import com.amaap.trooptrainingsimulator.domain.models.Troop;
 import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 import com.amaap.trooptrainingsimulator.domain.models.exceptions.InvalidCountException;
 import com.amaap.trooptrainingsimulator.domain.services.TrainService;
@@ -24,30 +25,39 @@ public class TrainingManager {
     }
 
     public boolean trainTheNewTroop(Trooper troop, int count) throws InvalidCountException {
+        if (count < 1 || count > 10) throw new InvalidCountException(count + " Count should be greater than 10!");
         TrainTroopRequest trainRequest = new TrainTroopRequest(troop, count);
         pendingRequests.add(trainRequest);
         return true;
     }
 
-    public int createNewTroopers() {
+    public Troop createNewTroopers(TrainTroopRequest request) {
 
-        Archers archers = new Archers();
-        Barbarian barbarian = new Barbarian();
-        return 1;
+        if (request.getTroop() == Trooper.ARCHER) {
+            return new Archers();
+        }
+        return new Barbarian();
     }
 
     public List<TrainTroopRequest> getPendingRequests() {
         return pendingRequests;
     }
 
-    public void processPendingRequests() {
+    public void processPendingRequests() throws InvalidCountException {
         for (TrainTroopRequest request : pendingRequests) {
+            int numberOfTrooper = request.getCount();
+            for (int i = 0; i < numberOfTrooper; i++) {
 
-            trainingService.trainTroops(request, barrack);
+                if (barrack.getTroops().size() < barrack.getCapacity()) {
+                    Troop troop = createNewTroopers(request);
+                    System.out.println(troop);
+                    barrack.getTroops().add(troop);
+                }
 
+            }
         }
+        trainingService.trainTroops(new TrainTroopRequest(Trooper.ARCHER, 4), barrack);
         pendingRequests.clear();
-
 
     }
 
