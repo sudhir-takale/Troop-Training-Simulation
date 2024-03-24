@@ -38,3 +38,72 @@ how many archers you want to train ? 10 <br />
 2. view troop camp <br />
 What do you want to do ? 1 <br />
   
+
+---------------------------------------------------------------------------
+
+ProjectName : Troop Training Simulator -
+Domain: Training Simulation
+
+## Gamer -> manager
+
+### models :
+Troop
+  - time
+  - cost
+  - 
+- Archers extends troop 
+   - set values
+  
+- Barbarian
+   - set values 
+
+- enum Troopers 
+    - ARCHERS
+    - BARBARIANS
+
+- TrainTrooper
+  - Trooper
+  - count
+  
+- Barracks 
+     - capacity - 10
+     - List<Troop> troopersWaitingForTraining
+
+### domain services
+
+- TrainService 
+  - trainTheTrooper()
+  - sendThemToArmyCamp()
+
+- ArmyCamp -> display 
+  - map<String, Integer> archers;
+  - map<String, Integer> barbarian;
+
+   - displayTrainedCountOfTroopers() 
+
+### config
+  - setBarracks limit
+
+
+
+gamer -> trainTheTroopers,-> whom-> archers -> how many
+
+
+game/manager
+  - request to train trooper
+  - which troopers 
+  - count of troopers
+      - perform data validation
+
+Barracks ->
+  - has waiting list of troopers
+  - according train the trooper 
+
+armyCamp 
+  - display troops count
+  - maintains map 
+
+
+
+
+
