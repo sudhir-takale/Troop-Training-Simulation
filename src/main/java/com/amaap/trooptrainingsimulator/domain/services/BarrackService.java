@@ -34,7 +34,6 @@ public class BarrackService {
         return (request.getTroop() == Trooper.ARCHER) ? new Archers() : new Barbarian();
     }
 
-
     public void processWaitingList() {
         int freeSpace = barrack.getCapacity() - barrack.getTroops().size();
         if (freeSpace > 0) {
