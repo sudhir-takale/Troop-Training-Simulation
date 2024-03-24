@@ -1,8 +1,10 @@
 package com.amaap.trooptrainingsimulator;
 
+import com.amaap.trooptrainingsimulator.domain.models.Barrack;
 import com.amaap.trooptrainingsimulator.domain.models.TrainTroopRequest;
 import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 import com.amaap.trooptrainingsimulator.domain.models.exceptions.InvalidCountException;
+import com.amaap.trooptrainingsimulator.domain.services.TrainService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,17 +13,20 @@ import java.util.List;
 
 class TrainingManagerTest {
     private TrainingManager trainingManager;
+    private TrainService trainingService;
+    private Barrack barrack;
 
     @BeforeEach
     void setup() throws Exception {
-        trainingManager = new TrainingManager();
-
+        trainingService = new TrainService();
+        barrack = new Barrack();
+        trainingManager = new TrainingManager(trainingService, barrack);
     }
 
     @Test
     void shouldBeAbleToCreateTrainingManager() {
 //        Arrange & Act
-        TrainingManager trainingManager = new TrainingManager();
+        TrainingManager trainingManager = new TrainingManager(trainingService, barrack);
 //        Assert
         Assertions.assertNotNull(trainingManager);
 
@@ -30,7 +35,7 @@ class TrainingManagerTest {
     @Test
     void shouldBeAbleToCreateTroopers() {
 //        Arrange
-        TrainingManager trainingManager = new TrainingManager();
+        TrainingManager trainingManager = new TrainingManager(trainingService, barrack);
 //        Act
         int result = trainingManager.createNewTroopers();
 //        Assert
