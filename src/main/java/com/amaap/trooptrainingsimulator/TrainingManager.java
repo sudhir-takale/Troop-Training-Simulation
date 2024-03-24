@@ -18,7 +18,7 @@ public class TrainingManager {
     private final BarrackService barrackService;
     private final Barrack barrack;
     private final ArmyCamp armyCamp;
-    private List<TrainTroopRequest> pendingRequests;
+    private final List<TrainTroopRequest> pendingRequests;
 
 
     public TrainingManager(TrainService trainingService, BarrackService barrackService, Barrack barrack, ArmyCamp armyCamp) {

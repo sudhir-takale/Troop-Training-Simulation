@@ -30,12 +30,4 @@ public class Troop {
         this.cost = cost;
     }
 
-    @Override
-    public String toString() {
-        return "Troop{" +
-                "weapon='" + weapon + '\'' +
-                ", time=" + time +
-                ", cost=" + cost +
-                '}';
-    }
 }
