@@ -11,8 +11,8 @@ public class TrainingManager {
 
     public int createNewTroopers() {
 
-        Archers archers = new Archers("Bow", 3, 10);
-        Barbarian barbarian = new Barbarian("Sword", 6, 20);
+        Archers archers = new Archers();
+        Barbarian barbarian = new Barbarian();
         return 1;
     }
 }
