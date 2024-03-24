@@ -14,7 +14,8 @@ There are two kinds of troops Archers and Barbarians. Each trooper(archer/barbar
 - Only one trooper can be trained at a given point of time.
 - The maximum seat capacity of a barracks is 10.
 - Others have to wait to outside the barracks
-- Barracks can have mix of troopers: e.g.: 5 Archers and 5 Barbarians or 4 Archers and 6 Barbarians or 10 Archers or 10 Barbarians Army Camp: where troops assemble after training.
+- Barracks can have mix of troopers: e.g.: 5 Archers and 5 Barbarians or 4 Archers and 6 Barbarians or 10 Archers or 10 Barbarians 
+### Army Camp: where troops assemble after training.
 ## Scenario 1: Simulate the training and train barbarians and/or archers.
 - As a gamer 
 - i should be able to input no.of barbarians and/or archers i would like to train. 

@@ -1,10 +1,13 @@
 package com.amaap.trooptrainingsimulator;
 
+import com.amaap.trooptrainingsimulator.domain.models.TrainTroopRequest;
 import com.amaap.trooptrainingsimulator.domain.models.Trooper;
 import com.amaap.trooptrainingsimulator.domain.models.exceptions.InvalidCountException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 class TrainingManagerTest {
     private TrainingManager trainingManager;
@@ -40,6 +43,29 @@ class TrainingManagerTest {
         boolean result = trainingManager.trainTheNewTroop(Trooper.ARCHER, 3);
 //        Assert
         Assertions.assertTrue(result);
+    }
+
+    @Test
+    void shouldBeAbleToAddNewTroopsToPendingRequests() throws InvalidCountException {
+        // Act
+        trainingManager.trainTheNewTroop(Trooper.ARCHER, 3);
+        // Assert
+        List<TrainTroopRequest> pendingRequests = trainingManager.getPendingRequests();
+        Assertions.assertEquals(1, pendingRequests.size());
+        TrainTroopRequest request = pendingRequests.get(0);
+        Assertions.assertEquals(Trooper.ARCHER, request.getTroop());
+        Assertions.assertEquals(3, request.getCount());
+    }
+
+    @Test
+    void shouldBeAbleToProcessPendingRequests() throws InvalidCountException {
+        // Arrange
+        trainingManager.trainTheNewTroop(Trooper.ARCHER, 3);
+        // Act
+        trainingManager.processPendingRequests();
+        // Assert
+        List<TrainTroopRequest> pendingRequests = trainingManager.getPendingRequests();
+        Assertions.assertTrue(pendingRequests.isEmpty());
     }
 
 

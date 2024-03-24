@@ -6,6 +6,13 @@ import org.junit.jupiter.api.Test;
 
 class TrainTroopRequestTest {
 
+    @Test
+    void shouldBeAbleToCreateTrainTroopRequest() throws InvalidCountException {
+//        Arrange & Act
+        TrainTroopRequest traintroopRequest = new TrainTroopRequest(Trooper.ARCHER, 3);
+//        Assert
+        Assertions.assertNotNull(traintroopRequest);
+    }
 
     @Test
     void shouldThrowInvalidCountExceptionWhenCountIsLessThanZeroOrCountIsGreaterThanTen() {
@@ -22,7 +29,6 @@ class TrainTroopRequestTest {
         Assertions.assertDoesNotThrow(() -> new TrainTroopRequest(Trooper.ARCHER, 10));
         Assertions.assertDoesNotThrow(() -> new TrainTroopRequest(Trooper.ARCHER, 5));
     }
-
 
 
 }

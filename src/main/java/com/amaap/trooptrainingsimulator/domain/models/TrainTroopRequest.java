@@ -7,9 +7,20 @@ public class TrainTroopRequest {
     private int count;
 
     public TrainTroopRequest(Trooper troop, int count) throws InvalidCountException {
-        if (count < 1 || count > 10) throw new InvalidCountException(count + "");
+        if (!validate(count)) throw new InvalidCountException(count + " Count is Invalid !");
         this.troop = troop;
         this.count = count;
     }
 
+    private static boolean validate(int count) {
+        return count >= 1 && count <= 10;
+    }
+
+    public Trooper getTroop() {
+        return this.troop;
+    }
+
+    public int getCount() {
+        return this.count;
+    }
 }
