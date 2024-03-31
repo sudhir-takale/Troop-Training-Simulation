@@ -1,3 +1,4 @@
+![image](https://github.com/sudhir-takale/Troop-Training-Simulation/assets/93988135/cf687ce1-3297-4588-9186-1ab06e16c104)
 
 # Problem Statement: (Troop training simulation is inspired from Clash of Clans games.)
 As a gaming programmer you have to create a simulation software using which gamers can train army troops. Definition and details of the simulation is as follows
