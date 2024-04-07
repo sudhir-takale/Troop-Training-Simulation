@@ -33,6 +33,7 @@ public class BarrackService {
 
                 delay(time);
                 troopList.remove(troop);
+
             }
         }
     }

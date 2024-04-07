@@ -9,11 +9,11 @@ import static org.junit.Assert.assertEquals;
 
 class BarrackServiceTest {
 
+    BarrackService barrackService = new BarrackService();
 
     @Test
     void shouldBeAbleToAddArcherInTheBarrack() {
-
-        BarrackService barrackService = new BarrackService();
+//        act
         Troop troop = new Archer();
         barrackService.add(troop);
 //        assert
@@ -23,8 +23,7 @@ class BarrackServiceTest {
 
     @Test
     void shouldBeAbleToAddBarbarianInTheBarrack() {
-        BarrackService barrackService = new BarrackService();
-
+//       act
         Troop troop = new Barbarian();
         barrackService.add(troop);
 //        assert
@@ -35,7 +34,6 @@ class BarrackServiceTest {
     @Test
     void shouldBeAbleToMultipleTroopsInTheBarrack() {
 //        arrange
-        BarrackService barrackService = new BarrackService();
         Troop troop = new Barbarian();
         Troop troop1 = new Archer();
         Troop troop2 = new Barbarian();
@@ -51,7 +49,6 @@ class BarrackServiceTest {
     @Test
     void shouldBeAbleToTrainTheTroops() throws InterruptedException {
 //        arrange
-        BarrackService barrackService = new BarrackService();
         Troop troop = new Barbarian();
         Troop troop1 = new Barbarian();
         barrackService.add(troop);
