@@ -48,5 +48,18 @@ class BarrackServiceTest {
 
     }
 
+    @Test
+    void shouldBeAbleToTrainTheTroops() throws InterruptedException {
+//        arrange
+        BarrackService barrackService = new BarrackService();
+        Troop troop = new Barbarian();
+        Troop troop1 = new Barbarian();
+        barrackService.add(troop);
+        barrackService.add(troop1);
+//        act
+        barrackService.trainTheTroop();
+//        assert
+        assertEquals(0, barrackService.getTroopList().size());
+    }
 
 }

@@ -20,12 +20,6 @@ class TroopRepositoryTest {
         assertTrue(result);
     }
 
-    @Test
-    void shouldBeAbleToCreateOnlyTenTroopsAtATime() {
 
-
-
-
-    }
 
 }
