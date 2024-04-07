@@ -7,16 +7,23 @@ import com.amaap.trooptrainingsimulator.repository.dao.Troop;
 import com.amaap.trooptrainingsimulator.service.BarrackService;
 
 public class TroopRepository {
+
+    private final BarrackService barrackService;
+
+    public TroopRepository(BarrackService barrackService) {
+        this.barrackService = barrackService;
+    }
+
     public boolean create(TroopType troopType, int count) {
 
         for (int i = 0; i < count; i++) {
             Troop troop;
             if (TroopType.ARCHER == troopType) {
                 troop = new Archer();
-            } else  {
+            } else {
                 troop = new Barbarian();
             }
-            new BarrackService().add(troop);
+            barrackService.add(troop);
         }
         return true;
     }
