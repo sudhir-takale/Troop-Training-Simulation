@@ -23,8 +23,8 @@ class BarrackServiceTest {
 
     @Test
     void shouldBeAbleToAddBarbarianInTheBarrack() {
-
         BarrackService barrackService = new BarrackService();
+
         Troop troop = new Barbarian();
         barrackService.add(troop);
 //        assert
