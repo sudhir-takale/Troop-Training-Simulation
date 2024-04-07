@@ -46,78 +46,54 @@ What do you want to do ? 1 <br />
 ProjectName : Troop Training Simulator -
 Domain: Training Simulation
 
-## Gamer -> manager
 
-### models :
-Troop
-  - time
-  - cost
+### controller
+    - TrainingController
+      - Services
+      - createServices
+      - dtoCreateServices
+      - TroopType(enum)
+      - count
+      - barracks
+      - troopers
+### TrainingService
+    - train troops
+    - send to ArmyCamp
+    - update troop count and cost in db
+  - ViewController
+### Services
+- ArmyCampRepository -> db
 
-- Archers extends troop 
-   - set values
-  
-- Barbarian
-   - set values 
-
-- enum Troopers 
-    - ARCHERS
-    - BARBARIANS
-
-- TrainTrooper
-  - Trooper
-  - count
-  
-- Barracks 
-     - capacity - 10
-     - List<Troop> troopersWaitingForTraining
-
-### domain services
-
-- TrainService 
-  - trainTheTrooper()
-  - sendThemToArmyCamp()
-
-- ArmyCamp -> display 
-  - map<String, Integer> archers;
-  - map<String, Integer> barbarian;
-
-   - displayTrainedCountOfTroopers() 
+## Domain
+    -model
+        - Troop
+        - Barrack
+            - list <Troop> or Queue
+                    - conditions
+                      - max capacity 10
+                      - wait outside barracks
+        - Army Camp
+                - no.of troops          
+        - service
+            - training
 
 ### config
-  - setBarracks limit
+  - time of training
+  - cost  of training
 
+### repository
+    - ArmyCampRepository
+    - archers
+    - barbarians
+    - total count
+    - total Cost       
+    - remaining cost
 
+    - BarrackRepository
+            - dtoCreate
 
-gamer -> trainTheTroopers,-> whom-> archers -> how many
-
-
-game/manager
-  - request to train trooper
-  - which troopers 
-  - count of troopers
-      - perform data validation
-
-Barracks ->
-  - has waiting list of troopers
-  - according train the trooper 
-
-armyCamp 
-  - display troops count
-  - maintains map 
-
-### GameManager
-  - has access to 
-      - request new troopers
-      - view troops count
-
-### Manager 
-    - manages everything
-        - create new archers
-        - create barbarians
-        - send To train them
-
-### Business requirements
-    - actual implementation
+Assumptions :
+initially user have 500 magic points
 
 
 
