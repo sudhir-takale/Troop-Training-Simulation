@@ -3,11 +3,19 @@ package com.amaap.trooptrainingsimulator.controller;
 import com.amaap.trooptrainingsimulator.domain.model.Archer;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
+import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabase;
+import com.amaap.trooptrainingsimulator.repository.impl.InMemoryTroopRepository;
+import com.amaap.trooptrainingsimulator.service.TroopService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class TrainingControllerTest {
+
+
+    TroopController controller = new TroopController
+            (new TroopService
+                    (new InMemoryTroopRepository(new InMemoryDatabase())));
 
     @Test
     void shouldBeAbleToCreateArcherTrooper() {
@@ -16,7 +24,6 @@ public class TrainingControllerTest {
         int trainingTime = 3;
         int trainingCost = 10;
         int id = 1;
-        TroopController controller = new TroopController();
 
         //act
         Troop expected = new Archer(1, 3, 10);

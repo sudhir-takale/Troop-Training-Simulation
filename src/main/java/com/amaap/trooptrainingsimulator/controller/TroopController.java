@@ -6,7 +6,12 @@ import com.amaap.trooptrainingsimulator.service.TroopService;
 
 public class TroopController {
 
-    TroopService troopService = new TroopService();
+    private TroopService troopService;
+
+
+    public TroopController(TroopService troopService) {
+        this.troopService = troopService;
+    }
 
     public Troop createTroop(TroopType troopType, int trainingTime, int trainingCost) {
         return troopService.create(troopType, trainingTime, trainingCost);

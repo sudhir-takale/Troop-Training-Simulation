@@ -5,9 +5,14 @@ import com.amaap.trooptrainingsimulator.domain.model.Barbarian;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import com.amaap.trooptrainingsimulator.repository.TroopRepository;
-import com.amaap.trooptrainingsimulator.repository.impl.InMemoryTroopRepository;
 
 public class TroopService {
+    private TroopRepository troopRepository;
+
+    public TroopService(TroopRepository troopRepository) {
+        this.troopRepository = troopRepository;
+    }
+
     public Troop create(TroopType troopType, int trainingTime, int trainingCost) {
         Troop troop;
 
@@ -17,7 +22,6 @@ public class TroopService {
             troop = new Barbarian(1, trainingTime, trainingCost);
         }
 
-        TroopRepository troopRepository = new InMemoryTroopRepository();
         return troopRepository.insert(troop);
 
     }

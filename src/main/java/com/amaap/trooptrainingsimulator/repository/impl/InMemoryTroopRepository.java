@@ -10,7 +10,11 @@ import java.util.List;
 
 public class InMemoryTroopRepository implements TroopRepository {
 
-    InMemoryDatabase inMemoryDatabase = new InMemoryDatabase();
+    private InMemoryDatabase inMemoryDatabase;
+
+    public InMemoryTroopRepository(InMemoryDatabase inMemoryDatabase) {
+        this.inMemoryDatabase = inMemoryDatabase;
+    }
 
     @Override
     public Troop insert(Troop troop) {
@@ -24,6 +28,6 @@ public class InMemoryTroopRepository implements TroopRepository {
 
     public List<Troop> getAllTroops() {
 
-       return inMemoryDatabase.getAllTroops();
+        return inMemoryDatabase.getAllTroops();
     }
 }
