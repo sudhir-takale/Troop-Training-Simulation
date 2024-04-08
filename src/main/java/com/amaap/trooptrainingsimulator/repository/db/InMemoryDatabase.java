@@ -29,4 +29,7 @@ public class InMemoryDatabase {
         return result;
     }
 
+    public List<Troop> getAllTroops() {
+        return this.troopList;
+    }
 }
