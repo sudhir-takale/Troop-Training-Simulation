@@ -2,6 +2,7 @@ package com.amaap.trooptrainingsimulator.service;
 
 import com.amaap.trooptrainingsimulator.controller.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.Archer;
+import com.amaap.trooptrainingsimulator.domain.model.Barbarian;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import org.junit.jupiter.api.Test;
 
@@ -25,6 +26,23 @@ class TroopServiceTest {
         //assert
         assertEquals(expected, actual);
     }
+    @Test
+    void shouldBeAbleToCreateBarbarian() {
+        //arrange
+        TroopType troopType = TroopType.BARBARIAN;
+        int trainingTime = 6;
+        int trainingCost = 20;
+        int id = 1;
+        TroopService troopService = new TroopService();
+
+        //act
+        Troop expected = new Barbarian(1, 6, 20);
+        Troop actual = troopService.create(troopType, trainingTime, trainingCost);
+
+        //assert
+        assertEquals(expected, actual);
+    }
+
 
 
 }
