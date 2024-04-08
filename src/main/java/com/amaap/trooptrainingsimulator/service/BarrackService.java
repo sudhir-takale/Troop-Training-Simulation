@@ -1,6 +1,7 @@
 package com.amaap.trooptrainingsimulator.service;
 
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
+import com.amaap.trooptrainingsimulator.domain.service.TrainService;
 import com.amaap.trooptrainingsimulator.repository.BarrackRepository;
 
 import java.util.List;
@@ -28,4 +29,13 @@ public class BarrackService {
     }
 
 
+    public void trainTheTroop() throws InterruptedException {
+
+        Queue<Troop> barracks = getAllTroops();
+        int size = barracks.size();
+       for(int i = 0; i < size; i++) {
+           Troop troop = barracks.poll();
+            TrainService.train(troop, troop.getTrainingTime());
+        }
+    }
 }

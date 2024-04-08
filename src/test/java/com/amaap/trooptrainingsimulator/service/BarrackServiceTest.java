@@ -15,6 +15,7 @@ import static org.junit.Assert.assertTrue;
 class BarrackServiceTest {
 
     BarrackService barrackService = new BarrackService(new InMemoryBarrackRepository(new InMemoryDatabase()));
+
     @Test
     void shouldBeAbleToAddTroopsInBarrack() {
         //arrange
@@ -27,7 +28,6 @@ class BarrackServiceTest {
     }
 
     @Test
-
     void shouldNotAllowMoreThanTenTroopsToBarrack() {
         int count = 12;
         List<Troop> troops = TroopFactory.getTroopList();
@@ -38,5 +38,19 @@ class BarrackServiceTest {
         assertEquals(10, barrackQueue.size());
     }
 
+    @Test
+    void shouldBeAbleToTrainTheTroopers() throws InterruptedException {
+        int count = 12;
+        List<Troop> troops = TroopFactory.getTroopList();
+        //act
+        barrackService.addTroops(troops, count);
+        Queue<Troop> barrackQueue = barrackService.getAllTroops();
+        //assert
+        assertEquals(10, barrackQueue.size());
+        barrackService.trainTheTroop();
+        assertEquals(0, barrackQueue.size());
+
+
+    }
 
 }
