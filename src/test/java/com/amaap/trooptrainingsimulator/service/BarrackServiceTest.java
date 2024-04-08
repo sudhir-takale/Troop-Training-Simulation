@@ -7,7 +7,9 @@ import com.amaap.trooptrainingsimulator.repository.impl.InMemoryBarrackRepositor
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Queue;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 class BarrackServiceTest {
@@ -23,5 +25,18 @@ class BarrackServiceTest {
         //assert
         assertTrue(result);
     }
+
+    @Test
+
+    void shouldNotAllowMoreThanTenTroopsToBarrack() {
+        int count = 12;
+        List<Troop> troops = TroopFactory.getTroopList();
+        //act
+        barrackService.addTroops(troops, count);
+        Queue<Troop> barrackQueue = barrackService.getAllTroops();
+        //assert
+        assertEquals(10, barrackQueue.size());
+    }
+
 
 }

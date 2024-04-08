@@ -14,10 +14,14 @@ class InMemoryBarrackRepositoryTest {
     void shouldBeAbleToAddATroopIntoBarrack() {
         //arrange
         Troop troop = new Archer(1, 6, 20);
+        Troop troop1 = new Archer(1, 6, 20);
+        Troop troop2 = new Archer(1, 6, 20);
         //act
         inMemoryBarrackRepository.add(troop);
+        inMemoryBarrackRepository.add(troop1);
+        inMemoryBarrackRepository.add(troop2);
         //assert
-        assertEquals(1, inMemoryBarrackRepository.getBarracksQueue().size());
+        assertEquals(3, inMemoryBarrackRepository.getBarracksQueue().size());
 
     }
 

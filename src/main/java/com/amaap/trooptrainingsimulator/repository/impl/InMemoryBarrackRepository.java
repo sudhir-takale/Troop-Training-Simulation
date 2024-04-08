@@ -17,6 +17,7 @@ public class InMemoryBarrackRepository implements BarrackRepository {
     public void add(Troop troop) {
         inMemoryDatabase.insert(troop);
     }
+    @Override
     public Queue<Troop> getBarracksQueue() {
 
       return inMemoryDatabase.getBarracks();
