@@ -14,6 +14,7 @@ public class TroopController {
     }
 
     public Troop createTroop(TroopType troopType, int trainingTime, int trainingCost) {
+
         return troopService.create(troopType, trainingTime, trainingCost);
 
     }

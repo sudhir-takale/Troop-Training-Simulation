@@ -14,6 +14,7 @@ public class TroopService {
     }
 
     public Troop create(TroopType troopType, int trainingTime, int trainingCost) {
+        // validations
         Troop troop;
 
         if (TroopType.ARCHER == troopType) {
