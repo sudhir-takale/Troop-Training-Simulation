@@ -2,17 +2,17 @@ package com.amaap.trooptrainingsimulator.service;
 
 import com.amaap.trooptrainingsimulator.controller.TroopFactory;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
-import com.amaap.trooptrainingsimulator.repository.BarrackRepository;
+import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabase;
+import com.amaap.trooptrainingsimulator.repository.impl.InMemoryBarrackRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BarrackServiceTest {
 
-    BarrackService barrackService = new BarrackService(new BarrackRepository());
+    BarrackService barrackService = new BarrackService(new InMemoryBarrackRepository(new InMemoryDatabase()));
     @Test
     void shouldBeAbleToAddTroopsInBarrack() {
         //arrange
@@ -22,7 +22,6 @@ class BarrackServiceTest {
         boolean result = barrackService.addTroops(troops, count);
         //assert
         assertTrue(result);
-
-
     }
+
 }
