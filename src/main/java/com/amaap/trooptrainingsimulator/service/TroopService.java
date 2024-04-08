@@ -4,6 +4,7 @@ import com.amaap.trooptrainingsimulator.domain.model.Archer;
 import com.amaap.trooptrainingsimulator.domain.model.Barbarian;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
+import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
 import com.amaap.trooptrainingsimulator.repository.TroopRepository;
 
 public class TroopService {
@@ -13,7 +14,7 @@ public class TroopService {
         this.troopRepository = troopRepository;
     }
 
-    public Troop create(TroopType troopType, int trainingTime, int trainingCost) {
+    public Troop create(TroopType troopType, int trainingTime, int trainingCost) throws InvalidTroopParamsException {
         // validations
         Troop troop;
 

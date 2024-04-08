@@ -1,5 +1,8 @@
 package com.amaap.trooptrainingsimulator.domain.model;
 
+import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
+import com.amaap.trooptrainingsimulator.domain.model.validator.TroopValidator;
+
 import java.util.Objects;
 
 public class Troop {
@@ -8,7 +11,12 @@ public class Troop {
     private int trainingTime;
     private int trainingCost;
 
-    public Troop(int id, int trainingTime, int trainingCost) {
+    public Troop(int id, int trainingTime, int trainingCost) throws InvalidTroopParamsException {
+
+      if(!TroopValidator.validate(trainingTime, trainingCost)) {
+          throw new InvalidTroopParamsException("Invalid Parameters passed");
+      }
+
         this.id = id;
         this.trainingTime = trainingTime;
         this.trainingCost = trainingCost;
@@ -30,5 +38,9 @@ public class Troop {
 
     public int getId() {
         return this.id;
+    }
+
+    public int getTrainingTime() {
+        return this.trainingTime;
     }
 }

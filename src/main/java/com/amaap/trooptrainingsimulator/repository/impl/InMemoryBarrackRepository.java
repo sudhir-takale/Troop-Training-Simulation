@@ -2,24 +2,24 @@ package com.amaap.trooptrainingsimulator.repository.impl;
 
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.repository.BarrackRepository;
-import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabase;
+import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabaseImpl;
 
 import java.util.Queue;
 
 public class InMemoryBarrackRepository implements BarrackRepository {
-    private InMemoryDatabase inMemoryDatabase;
+    private InMemoryDatabaseImpl inMemoryDatabaseImpl;
 
-    public InMemoryBarrackRepository(InMemoryDatabase inMemoryDatabase) {
-        this.inMemoryDatabase = inMemoryDatabase;
+    public InMemoryBarrackRepository(InMemoryDatabaseImpl inMemoryDatabaseImpl) {
+        this.inMemoryDatabaseImpl = inMemoryDatabaseImpl;
     }
 
     @Override
     public void add(Troop troop) {
-        inMemoryDatabase.insert(troop);
+        inMemoryDatabaseImpl.insert(troop);
     }
     @Override
     public Queue<Troop> getBarracksQueue() {
 
-      return inMemoryDatabase.getBarracks();
+      return inMemoryDatabaseImpl.getBarracks();
     }
 }

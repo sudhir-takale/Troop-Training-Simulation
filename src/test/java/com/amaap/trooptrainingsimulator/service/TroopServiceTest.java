@@ -4,7 +4,8 @@ import com.amaap.trooptrainingsimulator.domain.model.Archer;
 import com.amaap.trooptrainingsimulator.domain.model.Barbarian;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
-import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabase;
+import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
+import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabaseImpl;
 import com.amaap.trooptrainingsimulator.repository.impl.InMemoryTroopRepository;
 import org.junit.jupiter.api.Test;
 
@@ -12,11 +13,11 @@ import static org.junit.Assert.assertEquals;
 
 class TroopServiceTest {
 
-    TroopService troopService = new TroopService(new InMemoryTroopRepository(new InMemoryDatabase()));
+    TroopService troopService = new TroopService(new InMemoryTroopRepository(new InMemoryDatabaseImpl()));
 
 
     @Test
-    void shouldBeAbleToCreateArcher() {
+    void shouldBeAbleToCreateArcher() throws InvalidTroopParamsException {
         //arrange
         TroopType troopType = TroopType.ARCHER;
         int trainingTime = 3;
@@ -32,7 +33,7 @@ class TroopServiceTest {
     }
 
     @Test
-    void shouldBeAbleToCreateBarbarian() {
+    void shouldBeAbleToCreateBarbarian() throws InvalidTroopParamsException {
         //arrange
         TroopType troopType = TroopType.BARBARIAN;
         int trainingTime = 6;

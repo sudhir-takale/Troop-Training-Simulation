@@ -2,7 +2,7 @@ package com.amaap.trooptrainingsimulator.repository.impl;
 
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.repository.TroopRepository;
-import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabase;
+import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabaseImpl;
 import com.amaap.trooptrainingsimulator.repository.db.exception.TroopNotFoundException;
 
 import java.util.List;
@@ -10,24 +10,24 @@ import java.util.List;
 
 public class InMemoryTroopRepository implements TroopRepository {
 
-    private InMemoryDatabase inMemoryDatabase;
+    private InMemoryDatabaseImpl inMemoryDatabaseImpl;
 
-    public InMemoryTroopRepository(InMemoryDatabase inMemoryDatabase) {
-        this.inMemoryDatabase = inMemoryDatabase;
+    public InMemoryTroopRepository(InMemoryDatabaseImpl inMemoryDatabaseImpl) {
+        this.inMemoryDatabaseImpl = inMemoryDatabaseImpl;
     }
 
     @Override
     public Troop insert(Troop troop) {
-        return inMemoryDatabase.add(troop);
+        return inMemoryDatabaseImpl.add(troop);
     }
 
     @Override
     public Troop getTroop(int id) throws TroopNotFoundException {
-        return inMemoryDatabase.get(id);
+        return inMemoryDatabaseImpl.get(id);
     }
 
     public List<Troop> getAllTroops() {
 
-        return inMemoryDatabase.getAllTroops();
+        return inMemoryDatabaseImpl.getAllTroops();
     }
 }

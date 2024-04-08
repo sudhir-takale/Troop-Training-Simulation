@@ -8,16 +8,18 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class InMemoryDatabase {
+public class InMemoryDatabaseImpl implements InMemoryDB{
 
     private List<Troop> troopList = new ArrayList<>();
     private Queue<Troop> barracksQueue = new LinkedList<>();
 
+    @Override
     public Troop add(Troop troop) {
         troopList.add(troop);
         return troop;
     }
 
+    @Override
     public Troop get(int id) throws TroopNotFoundException {
         Troop result = null;
         for (Troop troop : troopList) {
@@ -32,14 +34,15 @@ public class InMemoryDatabase {
         return result;
     }
 
+    @Override
     public List<Troop> getAllTroops() {
         return this.troopList;
     }
-
+    @Override
     public void insert(Troop troop) {
         barracksQueue.add(troop);
     }
-
+    @Override
     public Queue<Troop> getBarracks() {
         return this.barracksQueue;
     }

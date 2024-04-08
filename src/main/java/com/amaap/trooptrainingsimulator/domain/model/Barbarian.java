@@ -1,9 +1,11 @@
 package com.amaap.trooptrainingsimulator.domain.model;
 
+import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
+
 import java.util.Objects;
 
 public class Barbarian extends Troop {
-    public Barbarian(int id, int trainingTime, int trainingCost) {
+    public Barbarian(int id, int trainingTime, int trainingCost) throws InvalidTroopParamsException {
         super(id, trainingTime, trainingCost);
     }
 

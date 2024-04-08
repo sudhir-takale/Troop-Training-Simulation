@@ -3,7 +3,8 @@ package com.amaap.trooptrainingsimulator.controller;
 import com.amaap.trooptrainingsimulator.domain.model.Archer;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
-import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabase;
+import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
+import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabaseImpl;
 import com.amaap.trooptrainingsimulator.repository.impl.InMemoryTroopRepository;
 import com.amaap.trooptrainingsimulator.service.TroopService;
 import org.junit.jupiter.api.Test;
@@ -15,10 +16,10 @@ public class TrainingControllerTest {
 
     TroopController controller = new TroopController
             (new TroopService
-                    (new InMemoryTroopRepository(new InMemoryDatabase())));
+                    (new InMemoryTroopRepository(new InMemoryDatabaseImpl())));
 
     @Test
-    void shouldBeAbleToCreateArcherTrooper() {
+    void shouldBeAbleToCreateArcherTrooper() throws InvalidTroopParamsException {
         //arrange
         TroopType troopType = TroopType.ARCHER;
         int trainingTime = 3;
