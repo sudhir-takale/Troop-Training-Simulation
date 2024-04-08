@@ -1,5 +1,6 @@
 package com.amaap.trooptrainingsimulator.controller;
 
+import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import com.amaap.trooptrainingsimulator.service.TroopService;
 

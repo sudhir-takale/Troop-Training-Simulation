@@ -1,6 +1,7 @@
 package com.amaap.trooptrainingsimulator.controller;
 
 import com.amaap.trooptrainingsimulator.domain.model.Archer;
+import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import org.junit.jupiter.api.Test;
 

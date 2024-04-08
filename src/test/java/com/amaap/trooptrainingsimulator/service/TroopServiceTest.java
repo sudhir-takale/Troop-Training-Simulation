@@ -1,8 +1,8 @@
 package com.amaap.trooptrainingsimulator.service;
 
-import com.amaap.trooptrainingsimulator.controller.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.Archer;
 import com.amaap.trooptrainingsimulator.domain.model.Barbarian;
+import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +26,7 @@ class TroopServiceTest {
         //assert
         assertEquals(expected, actual);
     }
+
     @Test
     void shouldBeAbleToCreateBarbarian() {
         //arrange
@@ -42,7 +43,6 @@ class TroopServiceTest {
         //assert
         assertEquals(expected, actual);
     }
-
 
 
 }

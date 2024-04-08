@@ -1,4 +1,4 @@
-package com.amaap.trooptrainingsimulator.controller;
+package com.amaap.trooptrainingsimulator.domain.model;
 
 import java.util.Objects;
 
@@ -26,5 +26,9 @@ public class Troop {
     @Override
     public int hashCode() {
         return Objects.hash(id, trainingTime, trainingCost);
+    }
+
+    public int getId() {
+        return this.id;
     }
 }

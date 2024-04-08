@@ -1,9 +1,10 @@
 package com.amaap.trooptrainingsimulator.repository;
 
-import com.amaap.trooptrainingsimulator.controller.Troop;
+import com.amaap.trooptrainingsimulator.domain.model.Troop;
+import com.amaap.trooptrainingsimulator.repository.db.exception.TroopNotFoundException;
 
-public class TroopRepository {
-    public Troop insert(Troop troop) {
-        return troop;
-    }
+public interface TroopRepository {
+    public Troop insert(Troop troop);
+
+   Troop getTroop(int id) throws TroopNotFoundException;
 }
