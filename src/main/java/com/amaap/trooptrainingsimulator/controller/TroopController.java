@@ -1,14 +1,13 @@
 package com.amaap.trooptrainingsimulator.controller;
 
-import com.amaap.trooptrainingsimulator.domain.model.Barbarian;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
-
-import javax.swing.*;
+import com.amaap.trooptrainingsimulator.service.TroopService;
 
 public class TroopController {
-    public Troop createTroop(TroopType troopType, int trainingTime, int trainingCost) {
 
-        return new Archer(1, trainingTime, trainingCost);
+        TroopService troopService = new TroopService();
+    public Troop createTroop(TroopType troopType, int trainingTime, int trainingCost) {
+        return troopService.create(troopType, trainingTime, trainingCost);
 
     }
 }
