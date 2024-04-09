@@ -14,21 +14,29 @@ class TroopTest {
         // arrange
         Troop troop1 = new Archer(1, 3, 20);
         Troop troop2 = new Archer(1, 3, 20);
+        Troop troop3 = new Barbarian(1, 6, 20);
+        Troop troop4 = new Barbarian(1, 6, 20);
 
         // act & assert
         assertTrue(troop1.equals(troop2));
         assertEquals(troop1.hashCode(), troop2.hashCode());
+        assertTrue(troop3.equals(troop4));
+        assertEquals(troop3.hashCode(), troop4.hashCode());
     }
 
     @Test
     public void shouldReturnFalseWhenDifferentIds() throws InvalidTroopParamsException {
         // arrange
         Troop troop1 = new Archer(1, 3, 20);
-        Troop troop2 = new Archer(2, 3, 20);
+        Troop troop2 = new Archer(3, 3, 20);
+        Troop troop3 = new Barbarian(1, 6, 20);
+        Troop troop4 = new Barbarian(4, 6, 20);
 
         // act & assert
         assertFalse(troop1.equals(troop2));
         assertNotEquals(troop1.hashCode(), troop2.hashCode());
+        assertFalse(troop3.equals(troop4));
+        assertNotEquals(troop4.hashCode(), troop3.hashCode());
     }
 
     @Test
