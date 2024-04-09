@@ -3,6 +3,7 @@ package com.amaap.trooptrainingsimulator.repository.db;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import com.amaap.trooptrainingsimulator.repository.db.exception.TroopNotFoundException;
+
 import java.util.*;
 
 public class FakeInMemoryDatabase implements InMemoryDB {
@@ -49,10 +50,18 @@ public class FakeInMemoryDatabase implements InMemoryDB {
 
     @Override
     public boolean updateTrainedTroop(TroopType troopType) {
-
-        if (trainedTroops.containsKey(troopType)) {
-            trainedTroops.put(troopType, trainedTroops.get(troopType) + 1);
-        }
+            if (!trainedTroops.containsKey(troopType)) {
+                trainedTroops.put(troopType, 1);
+            }else {
+                trainedTroops.put(troopType, trainedTroops.get(troopType) + 1);
+            }
         return true;
     }
+
+    @Override
+    public Map<TroopType, Integer> getTrainedTroops() {
+        return this.trainedTroops;
+    }
+
+
 }

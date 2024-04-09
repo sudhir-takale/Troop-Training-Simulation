@@ -6,7 +6,9 @@ import com.amaap.trooptrainingsimulator.controller.factory.TroopFactory;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
 import com.amaap.trooptrainingsimulator.repository.db.FakeInMemoryDatabase;
+import com.amaap.trooptrainingsimulator.repository.impl.InMemoryArmyCampRepository;
 import com.amaap.trooptrainingsimulator.repository.impl.InMemoryBarrackRepository;
+import com.amaap.trooptrainingsimulator.service.ArmyCampService;
 import com.amaap.trooptrainingsimulator.service.BarrackService;
 import org.junit.jupiter.api.Test;
 
@@ -16,9 +18,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class BarrackControllerTest {
-    BarrackService barrackService = new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()));
+    BarrackService barrackService = new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()),
+            new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase())));
     BarrackController barrackController =
-            new BarrackController(new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase())));
+            new BarrackController(new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()),
+                    new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase()))));
 
     @Test
     void shouldBeAbleAddTroopsToBarrack() throws InvalidTroopParamsException {
@@ -34,7 +38,7 @@ public class BarrackControllerTest {
     @Test
     void shouldBeAbleToTrainTheTrooper() throws InvalidTroopParamsException {
         // arrange
-        Response expected = new Response(HttpStatus.OK,"Trooper trained successfully");
+        Response expected = new Response(HttpStatus.OK,"Troop trained successfully");
         // act
 
         List<Troop> troopers = TroopFactory.getTroopList();

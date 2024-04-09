@@ -1,7 +1,9 @@
 package com.amaap.trooptrainingsimulator.service;
 
+import com.amaap.trooptrainingsimulator.domain.model.Archer;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
-import com.amaap.trooptrainingsimulator.domain.service.TrainService;
+import com.amaap.trooptrainingsimulator.domain.model.TroopType;
+import com.amaap.trooptrainingsimulator.domain.service.TroopTrainer;
 import com.amaap.trooptrainingsimulator.repository.BarrackRepository;
 
 import java.util.List;
@@ -9,10 +11,12 @@ import java.util.Queue;
 
 public class BarrackService {
 
-    BarrackRepository barrackRepository;
+    private BarrackRepository barrackRepository;
+    private ArmyCampService armyCampService;
 
-    public BarrackService(BarrackRepository barrackRepository) {
+    public BarrackService(BarrackRepository barrackRepository, ArmyCampService armyCampService) {
         this.barrackRepository = barrackRepository;
+        this.armyCampService = armyCampService;
     }
 
     public boolean addTroops(List<Troop> troops, int count) {
@@ -33,9 +37,13 @@ public class BarrackService {
 
         Queue<Troop> barracks = getAllTroops();
         int size = barracks.size();
-       for(int i = 0; i < size; i++) {
-           Troop troop = barracks.poll();
-            TrainService.train(troop, troop.getTrainingTime());
+        for (int i = 0; i < size; i++) {
+            Troop troop = barracks.poll();
+            Troop trainedTroop = TroopTrainer.troopTrainer(troop, troop.getTrainingTime());
+            TroopType troopToUpdate;
+            if (trainedTroop instanceof Archer) troopToUpdate = TroopType.ARCHER;
+            else troopToUpdate = TroopType.BARBARIAN;
+            armyCampService.updateTroopCount(troopToUpdate);
         }
     }
 }

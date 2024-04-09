@@ -4,6 +4,7 @@ import com.amaap.trooptrainingsimulator.controller.factory.TroopFactory;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
 import com.amaap.trooptrainingsimulator.repository.db.FakeInMemoryDatabase;
+import com.amaap.trooptrainingsimulator.repository.impl.InMemoryArmyCampRepository;
 import com.amaap.trooptrainingsimulator.repository.impl.InMemoryBarrackRepository;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,8 @@ import static org.junit.Assert.assertTrue;
 
 class BarrackServiceTest {
 
-    BarrackService barrackService = new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()));
+    BarrackService barrackService = new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()),
+            new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase())));
 
     @Test
     void shouldBeAbleToAddTroopsInBarrack() throws InvalidTroopParamsException {
@@ -51,8 +53,19 @@ class BarrackServiceTest {
         assertEquals(10, barrackQueue.size());
         barrackService.trainTheTroop();
         assertEquals(0, barrackQueue.size());
-
-
     }
+    @Test
+    void shouldBeAbleToMoveTrainedTroopersToArmyCamp() throws InterruptedException, InvalidTroopParamsException {
+        int count = 12;
+        List<Troop> troops = TroopFactory.getTroopList();
+        //act
+        barrackService.addTroops(troops, count);
+        Queue<Troop> barrackQueue = barrackService.getAllTroops();
+        //assert
+        assertEquals(10, barrackQueue.size());
+        barrackService.trainTheTroop();
+        assertEquals(0, barrackQueue.size());
+    }
+
 
 }

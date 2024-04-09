@@ -12,7 +12,9 @@ import com.amaap.trooptrainingsimulator.service.BarrackService;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ArmyCampControllerTest {
@@ -20,7 +22,9 @@ public class ArmyCampControllerTest {
 
     ArmyCampController armyCampController =
             new ArmyCampController(new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase())));
-    private BarrackService barrackService = new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()));
+    private final BarrackService barrackService =
+            new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()),
+                    new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase())));
 
     @Test
     void shouldBeAbleToMoveToArmyCamp() throws InvalidTroopParamsException, InterruptedException {
@@ -35,6 +39,27 @@ public class ArmyCampControllerTest {
         //assert
         assertTrue(result);
 
+    }
+
+    @Test
+    void shouldBeAbleToGetTrainedTroop() throws InterruptedException, InvalidTroopParamsException {
+        //arrange
+        List<Troop> troopList = TroopFactory.getTroopList();
+        barrackService.addTroops(troopList, 4);
+        barrackService.trainTheTroop();
+        armyCampController.addTroops(TroopType.ARCHER);
+        armyCampController.addTroops(TroopType.ARCHER);
+        armyCampController.addTroops(TroopType.ARCHER);
+        armyCampController.addTroops(TroopType.BARBARIAN);
+
+        //act
+        Map<TroopType, Integer> troops = armyCampController.getTrainedTroops();
+        int archerCount = troops.get(TroopType.ARCHER);
+        int barbarianCount = troops.get(TroopType.BARBARIAN);
+
+        //assert
+        assertEquals(3, archerCount);
+        assertEquals(1, barbarianCount);
     }
 
 }

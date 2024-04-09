@@ -22,7 +22,7 @@ public class BarrackController {
     public Response trainTheTrooper() {
         try {
             barrackService.trainTheTroop();
-            return new Response(HttpStatus.OK,"Trooper trained successfully");
+            return new Response(HttpStatus.OK,"Troop trained successfully");
         }
         catch (InterruptedException exception)
         {

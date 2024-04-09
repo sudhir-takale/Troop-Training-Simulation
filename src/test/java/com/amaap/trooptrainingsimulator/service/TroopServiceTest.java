@@ -49,5 +49,12 @@ class TroopServiceTest {
         assertEquals(expected, actual);
     }
 
+//    @Test
+//    void shouldThrowExceptionWhenInvalidTroopTypePassed() throws InvalidTroopParamsException, InvalidTroopException {
+//        //arrange
+//        //assert
+//        assertEquals(expected, actual);
+//    }
+
 
 }

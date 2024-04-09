@@ -2,11 +2,19 @@ package com.amaap.trooptrainingsimulator.domain.model.validator;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TroopValidatorTest {
 
+    @Test
+    void shouldBeAbleToCreateInstanceOfClass() {
+       // arrange
+        TroopValidator troopValidator = new TroopValidator();
+        //assert
+        assertNotNull(troopValidator);
+    }
     @Test
     public void shouldReturnTrueIfValidParameterPassed() {
         //assert
