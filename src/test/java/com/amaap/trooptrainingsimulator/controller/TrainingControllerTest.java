@@ -4,7 +4,7 @@ import com.amaap.trooptrainingsimulator.controller.dto.HttpStatus;
 import com.amaap.trooptrainingsimulator.controller.dto.Response;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
-import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabaseImpl;
+import com.amaap.trooptrainingsimulator.repository.db.FakeInMemoryDatabase;
 import com.amaap.trooptrainingsimulator.repository.impl.InMemoryTroopRepository;
 import com.amaap.trooptrainingsimulator.service.TroopService;
 import com.amaap.trooptrainingsimulator.service.exception.InvalidTroopException;
@@ -17,7 +17,7 @@ public class TrainingControllerTest {
 
     TroopController controller = new TroopController
             (new TroopService
-                    (new InMemoryTroopRepository(new InMemoryDatabaseImpl())));
+                    (new InMemoryTroopRepository(new FakeInMemoryDatabase())));
 
     @Test
     void shouldBeAbleToCreateArcherTrooper() throws InvalidTroopParamsException, InvalidTroopException {

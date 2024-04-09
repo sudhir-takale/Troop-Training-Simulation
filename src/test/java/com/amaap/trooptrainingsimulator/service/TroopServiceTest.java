@@ -5,7 +5,7 @@ import com.amaap.trooptrainingsimulator.domain.model.Barbarian;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
-import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabaseImpl;
+import com.amaap.trooptrainingsimulator.repository.db.FakeInMemoryDatabase;
 import com.amaap.trooptrainingsimulator.repository.impl.InMemoryTroopRepository;
 import com.amaap.trooptrainingsimulator.service.exception.InvalidTroopException;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 class TroopServiceTest {
 
-    TroopService troopService = new TroopService(new InMemoryTroopRepository(new InMemoryDatabaseImpl()));
+    TroopService troopService = new TroopService(new InMemoryTroopRepository(new FakeInMemoryDatabase()));
 
 
     @Test

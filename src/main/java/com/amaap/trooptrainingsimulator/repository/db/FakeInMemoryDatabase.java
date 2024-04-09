@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class InMemoryDatabaseImpl implements InMemoryDB{
+public class FakeInMemoryDatabase implements InMemoryDB{
 
     private List<Troop> troopList = new ArrayList<>();
     private Queue<Troop> barracksQueue = new LinkedList<>();

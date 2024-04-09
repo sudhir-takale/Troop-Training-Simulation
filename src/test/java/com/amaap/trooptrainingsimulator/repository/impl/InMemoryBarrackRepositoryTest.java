@@ -3,14 +3,14 @@ package com.amaap.trooptrainingsimulator.repository.impl;
 import com.amaap.trooptrainingsimulator.domain.model.Archer;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
-import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabaseImpl;
+import com.amaap.trooptrainingsimulator.repository.db.FakeInMemoryDatabase;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
 class InMemoryBarrackRepositoryTest {
 
-    InMemoryBarrackRepository inMemoryBarrackRepository = new InMemoryBarrackRepository(new InMemoryDatabaseImpl());
+    InMemoryBarrackRepository inMemoryBarrackRepository = new InMemoryBarrackRepository(new FakeInMemoryDatabase());
     @Test
     void shouldBeAbleToAddATroopIntoBarrack() throws InvalidTroopParamsException {
         //arrange

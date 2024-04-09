@@ -2,9 +2,10 @@ package com.amaap.trooptrainingsimulator.controller;
 
 import com.amaap.trooptrainingsimulator.controller.dto.HttpStatus;
 import com.amaap.trooptrainingsimulator.controller.dto.Response;
+import com.amaap.trooptrainingsimulator.controller.factory.TroopFactory;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
-import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabaseImpl;
+import com.amaap.trooptrainingsimulator.repository.db.FakeInMemoryDatabase;
 import com.amaap.trooptrainingsimulator.repository.impl.InMemoryBarrackRepository;
 import com.amaap.trooptrainingsimulator.service.BarrackService;
 import org.junit.jupiter.api.Test;
@@ -15,9 +16,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class BarrackControllerTest {
-    BarrackService barrackService = new BarrackService(new InMemoryBarrackRepository(new InMemoryDatabaseImpl()));
+    BarrackService barrackService = new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()));
     BarrackController barrackController =
-            new BarrackController(new BarrackService(new InMemoryBarrackRepository(new InMemoryDatabaseImpl())));
+            new BarrackController(new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase())));
 
     @Test
     void shouldBeAbleAddTroopsToBarrack() throws InvalidTroopParamsException {

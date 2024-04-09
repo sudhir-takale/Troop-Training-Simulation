@@ -4,7 +4,7 @@ import com.amaap.trooptrainingsimulator.domain.model.Archer;
 import com.amaap.trooptrainingsimulator.domain.model.Barbarian;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
-import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabaseImpl;
+import com.amaap.trooptrainingsimulator.repository.db.FakeInMemoryDatabase;
 import com.amaap.trooptrainingsimulator.repository.db.exception.TroopNotFoundException;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThrows;
 
 class InMemoryTroopRepositoryTest {
 
-    InMemoryTroopRepository inMemoryTroopRepository = new InMemoryTroopRepository(new InMemoryDatabaseImpl());
+    InMemoryTroopRepository inMemoryTroopRepository = new InMemoryTroopRepository(new FakeInMemoryDatabase());
 
     @Test
     void shouldBeAbleToStoreTheTroopInMemory() throws TroopNotFoundException, InvalidTroopParamsException {
