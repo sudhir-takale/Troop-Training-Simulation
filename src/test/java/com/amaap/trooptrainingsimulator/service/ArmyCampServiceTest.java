@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 
 class ArmyCampServiceTest {
 
-    ArmyCampService armyCampService = new ArmyCampService(new InMemoryArmyCampRepository());
+    ArmyCampService armyCampService = new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase()));
     private BarrackService barrackService = new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()));
 
     @Test

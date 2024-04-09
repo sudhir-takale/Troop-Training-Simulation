@@ -1,6 +1,7 @@
 package com.amaap.trooptrainingsimulator.repository.db;
 
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
+import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import com.amaap.trooptrainingsimulator.repository.db.exception.TroopNotFoundException;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface InMemoryDB {
      List<Troop> getAllTroops();
      void insert(Troop troop);
      Queue<Troop> getBarracks();
+
+    boolean updateTrainedTroop(TroopType troopType);
 }
