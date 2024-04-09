@@ -1,12 +1,13 @@
 package com.amaap.trooptrainingsimulator.controller;
 
-import com.amaap.trooptrainingsimulator.domain.model.Archer;
-import com.amaap.trooptrainingsimulator.domain.model.Troop;
+import com.amaap.trooptrainingsimulator.controller.dto.HttpStatus;
+import com.amaap.trooptrainingsimulator.controller.dto.Response;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
 import com.amaap.trooptrainingsimulator.repository.db.InMemoryDatabaseImpl;
 import com.amaap.trooptrainingsimulator.repository.impl.InMemoryTroopRepository;
 import com.amaap.trooptrainingsimulator.service.TroopService;
+import com.amaap.trooptrainingsimulator.service.exception.InvalidTroopException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -19,7 +20,7 @@ public class TrainingControllerTest {
                     (new InMemoryTroopRepository(new InMemoryDatabaseImpl())));
 
     @Test
-    void shouldBeAbleToCreateArcherTrooper() throws InvalidTroopParamsException {
+    void shouldBeAbleToCreateArcherTrooper() throws InvalidTroopParamsException, InvalidTroopException {
         //arrange
         TroopType troopType = TroopType.ARCHER;
         int trainingTime = 3;
@@ -27,8 +28,8 @@ public class TrainingControllerTest {
         int id = 1;
 
         //act
-        Troop expected = new Archer(1, 3, 10);
-        Troop actual = controller.createTroop(troopType, trainingTime, trainingCost);
+        Response expected = new Response(HttpStatus.OK, "Trooper created successfully");
+        Response actual = controller.createTroop(TroopType.ARCHER, trainingTime, trainingCost);
 
         //assert
         assertEquals(expected, actual);

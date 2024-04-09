@@ -30,6 +30,7 @@ class BarrackServiceTest {
 
     @Test
     void shouldNotAllowMoreThanTenTroopsToBarrack() throws InvalidTroopParamsException {
+
         int count = 12;
         List<Troop> troops = TroopFactory.getTroopList();
         //act

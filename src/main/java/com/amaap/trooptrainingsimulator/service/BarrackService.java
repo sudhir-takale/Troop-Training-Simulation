@@ -33,8 +33,8 @@ public class BarrackService {
 
         Queue<Troop> barracks = getAllTroops();
         int size = barracks.size();
-        for (int i = 0; i < size; i++) {
-            Troop troop = barracks.poll();
+       for(int i = 0; i < size; i++) {
+           Troop troop = barracks.poll();
             TrainService.train(troop, troop.getTrainingTime());
         }
     }
