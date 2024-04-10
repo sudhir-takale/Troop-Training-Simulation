@@ -7,19 +7,17 @@ import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParam
 import com.amaap.trooptrainingsimulator.repository.db.FakeInMemoryDatabase;
 import com.amaap.trooptrainingsimulator.service.ArmyCampService;
 import com.amaap.trooptrainingsimulator.service.BarrackService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 class InMemoryArmyCampRepositoryTest {
     private final BarrackService barrackService =
             new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()),
                     new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase())));
-    private InMemoryArmyCampRepository inMemoryArmyCampRepository = new InMemoryArmyCampRepository(new FakeInMemoryDatabase());
+    private final InMemoryArmyCampRepository inMemoryArmyCampRepository = new InMemoryArmyCampRepository(new FakeInMemoryDatabase());
 
     @Test
     void shouldBeAbleToMoveToArmyCamp() throws InvalidTroopParamsException, InterruptedException {
@@ -32,7 +30,7 @@ class InMemoryArmyCampRepositoryTest {
         boolean result = inMemoryArmyCampRepository.update(TroopType.ARCHER);
 
         //assert
-        assertTrue(result);
+        Assertions.assertTrue(result);
 
     }
 
@@ -52,7 +50,7 @@ class InMemoryArmyCampRepositoryTest {
        int barbarianCount = troops.get(TroopType.BARBARIAN);
 
        //assert
-        assertEquals(3, archerCount);
-        assertEquals(1, barbarianCount);
+        Assertions.assertEquals(3, archerCount);
+        Assertions.assertEquals(1, barbarianCount);
     }
 }

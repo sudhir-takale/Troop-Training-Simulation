@@ -9,7 +9,7 @@ import com.amaap.trooptrainingsimulator.service.exception.InvalidTroopException;
 
 public class TroopController {
 
-    private TroopService troopService;
+    private final TroopService troopService;
 
 
     public TroopController(TroopService troopService) {

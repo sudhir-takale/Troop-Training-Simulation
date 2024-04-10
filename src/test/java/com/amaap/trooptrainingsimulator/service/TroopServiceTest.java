@@ -11,6 +11,7 @@ import com.amaap.trooptrainingsimulator.service.exception.InvalidTroopException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 class TroopServiceTest {
 
@@ -49,12 +50,13 @@ class TroopServiceTest {
         assertEquals(expected, actual);
     }
 
-//    @Test
-//    void shouldThrowExceptionWhenInvalidTroopTypePassed() throws InvalidTroopParamsException, InvalidTroopException {
-//        //arrange
-//        //assert
-//        assertEquals(expected, actual);
-//    }
+    @Test
+    void shouldThrowExceptionWhenInvalidTrooperPassed() {
+        //assert
+        assertThrows(InvalidTroopException.class, ()->{
+            troopService.create(TroopType.UNKNOWN, 6, 20);
 
+        });
+    }
 
 }

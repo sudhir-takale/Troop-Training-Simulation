@@ -1,5 +1,7 @@
 package com.amaap.trooptrainingsimulator.controller;
 
+import com.amaap.trooptrainingsimulator.controller.dto.HttpStatus;
+import com.amaap.trooptrainingsimulator.controller.dto.Response;
 import com.amaap.trooptrainingsimulator.controller.factory.TroopFactory;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
@@ -15,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class ArmyCampControllerTest {
 
@@ -34,10 +35,10 @@ public class ArmyCampControllerTest {
         barrackService.trainTheTroop();
 
         //act
-        boolean result = armyCampController.addTroops(TroopType.ARCHER);
-
+        Response actual = armyCampController.addTroops(TroopType.ARCHER);
+        Response expected = new Response(HttpStatus.OK,"Trooper added to camp");
         //assert
-        assertTrue(result);
+        assertEquals(expected, actual);
 
     }
 

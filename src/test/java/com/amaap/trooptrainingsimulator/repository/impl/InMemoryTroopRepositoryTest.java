@@ -1,7 +1,5 @@
 package com.amaap.trooptrainingsimulator.repository.impl;
 
-import com.amaap.trooptrainingsimulator.domain.model.Archer;
-import com.amaap.trooptrainingsimulator.domain.model.Barbarian;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
 import com.amaap.trooptrainingsimulator.repository.db.FakeInMemoryDatabase;
@@ -10,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static com.amaap.trooptrainingsimulator.utility.Builder.getArcher;
+import static com.amaap.trooptrainingsimulator.utility.Builder.getBarbarian;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
@@ -23,7 +23,7 @@ class InMemoryTroopRepositoryTest {
         int id = 1;
 
         //act
-        Troop actual = inMemoryTroopRepository.insert(new Archer(1, 3, 10));
+        Troop actual = inMemoryTroopRepository.insert(getArcher());
         Troop expected = inMemoryTroopRepository.getTroop(id);
 
         // assert
@@ -42,9 +42,9 @@ class InMemoryTroopRepositoryTest {
     @Test
     void shouldReturnAllAvailableTroopsInDatabase() throws InvalidTroopParamsException {
         //arrange
-        Troop actual = inMemoryTroopRepository.insert(new Archer(1, 3, 10));
-        Troop actual1 = inMemoryTroopRepository.insert(new Barbarian(2, 6, 20));
-        Troop actual2 = inMemoryTroopRepository.insert(new Archer(3, 3, 10));
+        Troop actual = inMemoryTroopRepository.insert(getArcher());
+        Troop actual1 = inMemoryTroopRepository.insert(getBarbarian());
+        Troop actual2 = inMemoryTroopRepository.insert(getArcher());
         //act
         List<Troop> allTroops = inMemoryTroopRepository.getAllTroops();
         // assert

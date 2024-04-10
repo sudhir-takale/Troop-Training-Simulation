@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class TrainingControllerTest {
+public class TroopControllerTest {
 
 
     TroopController controller = new TroopController
@@ -35,5 +35,17 @@ public class TrainingControllerTest {
         assertEquals(expected, actual);
 
     }
+
+    @Test
+    void shouldThrowExceptionWhenInvalidTrooperPasse() throws InvalidTroopParamsException, InvalidTroopException {
+        //arrange
+       Response expected =new Response(HttpStatus.BADREQUEST, "Invalid troop type ");
+       //act
+       Response actual = controller.createTroop(TroopType.UNKNOWN, 6, 20);
+       //assert
+       assertEquals(expected, actual);
+
+    }
+
 
 }

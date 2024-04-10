@@ -8,11 +8,7 @@ public class TroopValidator {
     }
 
     public static boolean validatesType(TroopType troopType) {
-        for (TroopType type : TroopType.values()) {
-            if (type == troopType) {
-                return true;
-            }
-        }
-        return false;
+
+       return troopType == TroopType.ARCHER || troopType == TroopType.BARBARIAN;
     }
 }
