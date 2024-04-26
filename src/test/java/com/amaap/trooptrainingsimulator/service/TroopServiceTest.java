@@ -28,7 +28,7 @@ class TroopServiceTest {
 
         //act
         Troop expected = new Archer(1, 3, 10);
-        Troop actual = troopService.create(troopType, trainingTime, trainingCost);
+        Troop actual = troopService.create(troopType);
 
         //assert
         assertEquals(expected, actual);
@@ -44,7 +44,7 @@ class TroopServiceTest {
 
         //act
         Troop expected = new Barbarian(1, 6, 20);
-        Troop actual = troopService.create(troopType, trainingTime, trainingCost);
+        Troop actual = troopService.create(troopType);
 
         //assert
         assertEquals(expected, actual);
@@ -54,7 +54,7 @@ class TroopServiceTest {
     void shouldThrowExceptionWhenInvalidTrooperPassed() {
         //assert
         assertThrows(InvalidTroopException.class, ()->{
-            troopService.create(TroopType.UNKNOWN, 6, 20);
+            troopService.create(TroopType.UNKNOWN);
 
         });
     }

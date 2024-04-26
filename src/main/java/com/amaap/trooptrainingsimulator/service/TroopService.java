@@ -8,25 +8,43 @@ import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParam
 import com.amaap.trooptrainingsimulator.domain.model.validator.TroopValidator;
 import com.amaap.trooptrainingsimulator.repository.TroopRepository;
 import com.amaap.trooptrainingsimulator.service.exception.InvalidTroopException;
+import com.google.inject.Inject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TroopService {
-    private TroopRepository troopRepository;
+    private final TroopRepository troopRepository;
 
+    @Inject
     public TroopService(TroopRepository troopRepository) {
         this.troopRepository = troopRepository;
     }
 
-    public Troop create(TroopType troopType, int trainingTime, int trainingCost) throws InvalidTroopParamsException, InvalidTroopException {
+    public Troop create(TroopType troopType) throws InvalidTroopParamsException, InvalidTroopException {
         if (!TroopValidator.validatesType(troopType)) {
             throw new InvalidTroopException("Invalid Troop Type Exception");
         }
         Troop troop;
         if (TroopType.ARCHER == troopType) {
-            troop = new Archer(1, trainingTime, trainingCost);
+            troop = new Archer(1, 6, 20);
         } else {
-            troop = new Barbarian(1, trainingTime, trainingCost);
+            troop = new Barbarian(1, 3, 10);
         }
         return troopRepository.insert(troop);
 
+    }
+
+    public List<Troop> getTroops(TroopType troopType, int count) throws InvalidTroopParamsException, InvalidTroopException {
+        List<Troop> troopList = new ArrayList<>();
+        while (troopList.size() != count) {
+
+            if (troopList.size() < count) {
+                create(troopType);
+            } else {
+                troopList.add(troopRepository.getTroopOf(troopType));
+            }
+        }
+        return troopList;
     }
 }

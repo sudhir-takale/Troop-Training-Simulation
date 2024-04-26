@@ -1,5 +1,7 @@
 package com.amaap.trooptrainingsimulator.repository.db;
 
+import com.amaap.trooptrainingsimulator.domain.model.Archer;
+import com.amaap.trooptrainingsimulator.domain.model.Barbarian;
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import com.amaap.trooptrainingsimulator.repository.db.exception.TroopNotFoundException;
@@ -50,17 +52,29 @@ public class FakeInMemoryDatabase implements InMemoryDB {
 
     @Override
     public boolean updateTrainedTroop(TroopType troopType) {
-            if (!trainedTroops.containsKey(troopType)) {
-                trainedTroops.put(troopType, 1);
-            }else {
-                trainedTroops.put(troopType, trainedTroops.get(troopType) + 1);
-            }
+        if (!trainedTroops.containsKey(troopType)) {
+            trainedTroops.put(troopType, 1);
+        } else {
+            trainedTroops.put(troopType, trainedTroops.get(troopType) + 1);
+        }
         return true;
     }
 
     @Override
     public Map<TroopType, Integer> getTrainedTroops() {
         return this.trainedTroops;
+    }
+
+    @Override
+    public Troop getTroopOf(TroopType troopType) {
+        for (Troop troop : troopList) {
+            if (troopType == TroopType.ARCHER && troop instanceof Archer) {
+                return troop;
+            } else if (troopType == TroopType.BARBARIAN && troop instanceof Barbarian) {
+                return troop;
+            }
+        }
+        return null;
     }
 
 

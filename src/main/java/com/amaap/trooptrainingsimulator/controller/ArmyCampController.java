@@ -4,6 +4,7 @@ import com.amaap.trooptrainingsimulator.controller.dto.HttpStatus;
 import com.amaap.trooptrainingsimulator.controller.dto.Response;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import com.amaap.trooptrainingsimulator.service.ArmyCampService;
+import com.google.inject.Inject;
 
 import java.util.Map;
 
@@ -11,6 +12,7 @@ public class ArmyCampController {
 
     private final ArmyCampService armyCampService;
 
+    @Inject
     public ArmyCampController(ArmyCampService armyCampService) {
         this.armyCampService = armyCampService;
     }

@@ -3,13 +3,15 @@ package com.amaap.trooptrainingsimulator.repository.impl;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import com.amaap.trooptrainingsimulator.repository.ArmyCampRepository;
 import com.amaap.trooptrainingsimulator.repository.db.InMemoryDB;
+import com.google.inject.Inject;
 
 import java.util.Map;
 
 public class InMemoryArmyCampRepository implements ArmyCampRepository {
 
-    private InMemoryDB inMemoryDB;
+    private final InMemoryDB inMemoryDB;
 
+    @Inject
     public InMemoryArmyCampRepository(InMemoryDB inMemoryDB) {
         this.inMemoryDB = inMemoryDB;
     }

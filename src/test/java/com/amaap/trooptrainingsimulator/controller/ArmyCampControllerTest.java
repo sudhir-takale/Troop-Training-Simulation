@@ -9,11 +9,13 @@ import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParam
 import com.amaap.trooptrainingsimulator.repository.db.FakeInMemoryDatabase;
 import com.amaap.trooptrainingsimulator.repository.impl.InMemoryArmyCampRepository;
 import com.amaap.trooptrainingsimulator.repository.impl.InMemoryBarrackRepository;
+import com.amaap.trooptrainingsimulator.repository.impl.InMemoryTroopRepository;
 import com.amaap.trooptrainingsimulator.service.ArmyCampService;
 import com.amaap.trooptrainingsimulator.service.BarrackService;
+import com.amaap.trooptrainingsimulator.service.TroopService;
+import com.amaap.trooptrainingsimulator.service.exception.InvalidTroopException;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -21,32 +23,27 @@ import static org.junit.Assert.assertEquals;
 public class ArmyCampControllerTest {
 
 
-    ArmyCampController armyCampController =
-            new ArmyCampController(new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase())));
-    private final BarrackService barrackService =
-            new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()),
-                    new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase())));
+    private final BarrackService barrackService = new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()), new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase())), new TroopService(new InMemoryTroopRepository(new FakeInMemoryDatabase())));
+    ArmyCampController armyCampController = new ArmyCampController(new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase())));
 
     @Test
-    void shouldBeAbleToMoveToArmyCamp() throws InvalidTroopParamsException, InterruptedException {
+    void shouldBeAbleToMoveToArmyCamp() throws InvalidTroopParamsException, InterruptedException, InvalidTroopException {
         //arrange
-        List<Troop> troopList = TroopFactory.getTroopList();
-        barrackService.addTroops(troopList, 4);
+        barrackService.addTroops(TroopType.ARCHER, 4);
         barrackService.trainTheTroop();
 
         //act
         Response actual = armyCampController.addTroops(TroopType.ARCHER);
-        Response expected = new Response(HttpStatus.OK,"Trooper added to camp");
+        Response expected = new Response(HttpStatus.OK, "Trooper added to camp");
         //assert
         assertEquals(expected, actual);
 
     }
 
     @Test
-    void shouldBeAbleToGetTrainedTroop() throws InterruptedException, InvalidTroopParamsException {
+    void shouldBeAbleToGetTrainedTroop() throws InterruptedException, InvalidTroopParamsException, InvalidTroopException {
         //arrange
-        List<Troop> troopList = TroopFactory.getTroopList();
-        barrackService.addTroops(troopList, 4);
+        barrackService.addTroops(TroopType.ARCHER, 4);
         barrackService.trainTheTroop();
         armyCampController.addTroops(TroopType.ARCHER);
         armyCampController.addTroops(TroopType.ARCHER);

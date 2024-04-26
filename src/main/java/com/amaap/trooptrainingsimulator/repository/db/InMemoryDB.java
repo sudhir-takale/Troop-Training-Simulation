@@ -10,15 +10,19 @@ import java.util.Queue;
 
 public interface InMemoryDB {
 
-     Troop add(Troop troop);
+    Troop add(Troop troop);
 
-    public Troop get(int id) throws TroopNotFoundException;
+    Troop get(int id) throws TroopNotFoundException;
 
-     List<Troop> getAllTroops();
-     void insert(Troop troop);
-     Queue<Troop> getBarracks();
+    List<Troop> getAllTroops();
+
+    void insert(Troop troop);
+
+    Queue<Troop> getBarracks();
 
     boolean updateTrainedTroop(TroopType troopType);
 
     Map<TroopType, Integer> getTrainedTroops();
+
+    Troop getTroopOf(TroopType troopType);
 }

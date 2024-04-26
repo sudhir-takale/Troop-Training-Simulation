@@ -15,9 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class TroopControllerTest {
 
 
-    TroopController controller = new TroopController
-            (new TroopService
-                    (new InMemoryTroopRepository(new FakeInMemoryDatabase())));
+    TroopController controller = new TroopController(new TroopService(new InMemoryTroopRepository(new FakeInMemoryDatabase())));
 
     @Test
     void shouldBeAbleToCreateArcherTrooper() throws InvalidTroopParamsException, InvalidTroopException {
@@ -29,7 +27,7 @@ public class TroopControllerTest {
 
         //act
         Response expected = new Response(HttpStatus.OK, "Trooper created successfully");
-        Response actual = controller.createTroop(TroopType.ARCHER, trainingTime, trainingCost);
+        Response actual = controller.createTroop(troopType, trainingTime, trainingCost);
 
         //assert
         assertEquals(expected, actual);
@@ -39,11 +37,11 @@ public class TroopControllerTest {
     @Test
     void shouldThrowExceptionWhenInvalidTrooperPasse() throws InvalidTroopParamsException, InvalidTroopException {
         //arrange
-       Response expected =new Response(HttpStatus.BADREQUEST, "Invalid troop type ");
-       //act
-       Response actual = controller.createTroop(TroopType.UNKNOWN, 6, 20);
-       //assert
-       assertEquals(expected, actual);
+        Response expected = new Response(HttpStatus.BADREQUEST, "Invalid troop type ");
+        //act
+        Response actual = controller.createTroop(TroopType.UNKNOWN, 6, 20);
+        //assert
+        assertEquals(expected, actual);
 
     }
 
