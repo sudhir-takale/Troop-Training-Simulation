@@ -2,8 +2,6 @@ package com.amaap.trooptrainingsimulator.controller;
 
 import com.amaap.trooptrainingsimulator.controller.dto.HttpStatus;
 import com.amaap.trooptrainingsimulator.controller.dto.Response;
-import com.amaap.trooptrainingsimulator.controller.factory.TroopFactory;
-import com.amaap.trooptrainingsimulator.domain.model.Troop;
 import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import com.amaap.trooptrainingsimulator.domain.model.exception.InvalidTroopParamsException;
 import com.amaap.trooptrainingsimulator.repository.db.FakeInMemoryDatabase;
@@ -23,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 public class ArmyCampControllerTest {
 
 
-    private final BarrackService barrackService = new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()), new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase())), new TroopService(new InMemoryTroopRepository(new FakeInMemoryDatabase())));
+    BarrackService barrackService = new BarrackService(new InMemoryBarrackRepository(new FakeInMemoryDatabase()), new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase())), new TroopService(new InMemoryTroopRepository(new FakeInMemoryDatabase())));
     ArmyCampController armyCampController = new ArmyCampController(new ArmyCampService(new InMemoryArmyCampRepository(new FakeInMemoryDatabase())));
 
     @Test

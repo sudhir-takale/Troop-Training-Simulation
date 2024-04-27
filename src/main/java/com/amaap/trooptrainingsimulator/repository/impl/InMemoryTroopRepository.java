@@ -1,13 +1,11 @@
 package com.amaap.trooptrainingsimulator.repository.impl;
 
 import com.amaap.trooptrainingsimulator.domain.model.Troop;
-import com.amaap.trooptrainingsimulator.domain.model.TroopType;
 import com.amaap.trooptrainingsimulator.repository.TroopRepository;
 import com.amaap.trooptrainingsimulator.repository.db.FakeInMemoryDatabase;
 import com.amaap.trooptrainingsimulator.repository.db.exception.TroopNotFoundException;
 import com.google.inject.Inject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,13 +33,5 @@ public class InMemoryTroopRepository implements TroopRepository {
         return fakeInMemoryDatabase.getAllTroops();
     }
 
-    @Override
-    public List<Troop> getTroops(int count) {
-        return new ArrayList<>();
-    }
 
-    @Override
-    public Troop getTroopOf(TroopType troopType) {
-        return fakeInMemoryDatabase.getTroopOf(troopType);
-    }
 }

@@ -10,6 +10,8 @@ import com.amaap.trooptrainingsimulator.repository.impl.InMemoryTroopRepository;
 import com.amaap.trooptrainingsimulator.service.exception.InvalidTroopException;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
@@ -22,12 +24,9 @@ class TroopServiceTest {
     void shouldBeAbleToCreateArcher() throws InvalidTroopParamsException, InvalidTroopException {
         //arrange
         TroopType troopType = TroopType.ARCHER;
-        int trainingTime = 3;
-        int trainingCost = 10;
-        int id = 1;
 
         //act
-        Troop expected = new Archer(1, 3, 10);
+        Troop expected = new Archer(1, 6, 20);
         Troop actual = troopService.create(troopType);
 
         //assert
@@ -38,12 +37,9 @@ class TroopServiceTest {
     void shouldBeAbleToCreateBarbarian() throws InvalidTroopParamsException, InvalidTroopException {
         //arrange
         TroopType troopType = TroopType.BARBARIAN;
-        int trainingTime = 6;
-        int trainingCost = 20;
-        int id = 1;
 
         //act
-        Troop expected = new Barbarian(1, 6, 20);
+        Troop expected = new Barbarian(1, 3, 10);
         Troop actual = troopService.create(troopType);
 
         //assert
@@ -53,10 +49,33 @@ class TroopServiceTest {
     @Test
     void shouldThrowExceptionWhenInvalidTrooperPassed() {
         //assert
-        assertThrows(InvalidTroopException.class, ()->{
+        assertThrows(InvalidTroopException.class, () -> {
             troopService.create(TroopType.UNKNOWN);
 
         });
     }
+
+    @Test
+    void shouldBeAbleToGetTroops() throws InvalidTroopParamsException, InvalidTroopException {
+        //arrange
+        TroopType troopType = TroopType.BARBARIAN;
+        troopService.create(troopType);
+        troopService.create(TroopType.ARCHER);
+        troopService.create(TroopType.ARCHER);
+        troopService.create(TroopType.ARCHER);
+        troopService.create(TroopType.ARCHER);
+        troopService.create(TroopType.ARCHER);
+        troopService.create(TroopType.BARBARIAN);
+        troopService.create(TroopType.BARBARIAN);
+        troopService.create(TroopType.BARBARIAN);
+        troopService.create(TroopType.BARBARIAN);
+
+        //act
+        List<Troop> troops = troopService.getTroops(TroopType.BARBARIAN, 4);
+
+        // assert
+        assertEquals(4, troops.size());
+    }
+
 
 }

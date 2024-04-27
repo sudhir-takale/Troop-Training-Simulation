@@ -42,6 +42,7 @@ class ArmyCampServiceTest {
         armyCampService.updateTroopCount(TroopType.ARCHER);
         armyCampService.updateTroopCount(TroopType.ARCHER);
         armyCampService.updateTroopCount(TroopType.BARBARIAN);
+
         //act
         Map<TroopType, Integer> troops = armyCampService.getTrainedTroops();
         int archerCount = troops.get(TroopType.ARCHER);

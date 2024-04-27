@@ -13,7 +13,6 @@ public interface TroopRepository {
 
     List<Troop> getAllTroops();
 
-    List<Troop> getTroops(int count);
 
-    Troop getTroopOf(TroopType troopType);
+
 }

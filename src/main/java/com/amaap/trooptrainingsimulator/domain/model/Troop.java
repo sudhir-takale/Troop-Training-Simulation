@@ -43,4 +43,5 @@ public class Troop {
     public int getTrainingTime() {
         return this.trainingTime;
     }
+
 }

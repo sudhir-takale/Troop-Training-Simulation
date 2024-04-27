@@ -19,9 +19,11 @@ public class InMemoryBarrackRepository implements BarrackRepository {
     public void add(Troop troop) {
         fakeInMemoryDatabase.insert(troop);
     }
+
+
     @Override
     public Queue<Troop> getBarracksQueue() {
 
-      return fakeInMemoryDatabase.getBarracks();
+        return fakeInMemoryDatabase.getBarracks();
     }
 }

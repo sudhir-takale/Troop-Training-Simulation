@@ -37,13 +37,8 @@ public class TroopService {
 
     public List<Troop> getTroops(TroopType troopType, int count) throws InvalidTroopParamsException, InvalidTroopException {
         List<Troop> troopList = new ArrayList<>();
-        while (troopList.size() != count) {
-
-            if (troopList.size() < count) {
-                create(troopType);
-            } else {
-                troopList.add(troopRepository.getTroopOf(troopType));
-            }
+        for (int i = 0; i < count; i++) {
+            troopList.add(create(troopType));
         }
         return troopList;
     }

@@ -24,5 +24,5 @@ public interface InMemoryDB {
 
     Map<TroopType, Integer> getTrainedTroops();
 
-    Troop getTroopOf(TroopType troopType);
+
 }
