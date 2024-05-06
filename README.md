@@ -1,4 +1,3 @@
-![image](https://github.com/sudhir-takale/Troop-Training-Simulation/assets/93988135/cf687ce1-3297-4588-9186-1ab06e16c104)
 
 # Problem Statement: (Troop training simulation is inspired from Clash of Clans games.)
 
