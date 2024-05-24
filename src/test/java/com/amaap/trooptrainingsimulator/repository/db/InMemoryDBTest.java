@@ -17,7 +17,7 @@ class InMemoryDBTest {
     InMemoryDB inMemoryDB = new FakeInMemoryDatabase();
 
     @Test
-    void add() throws InvalidTroopParamsException {
+    void shouldBeAbleToAddNewTrooperToDatabase() throws InvalidTroopParamsException {
         // arrange
         Troop added = new Troop(1, 3, 10);
 
@@ -29,7 +29,7 @@ class InMemoryDBTest {
     }
 
     @Test
-    void get() throws InvalidTroopParamsException, TroopNotFoundException {
+    void shouldBeAbleToGetTrooperById() throws InvalidTroopParamsException, TroopNotFoundException {
         // arrange
         Troop created = inMemoryDB.add(new Troop(1, 3, 10));
 
@@ -41,7 +41,7 @@ class InMemoryDBTest {
     }
 
     @Test
-    void getAllTroops() throws InvalidTroopParamsException {
+    void shouldBeAbleToGetAllTroopers() throws InvalidTroopParamsException {
         // arrange
         inMemoryDB.add(new Troop(1, 3, 10));
         inMemoryDB.add(new Troop(2, 3, 10));
@@ -56,7 +56,7 @@ class InMemoryDBTest {
 
 
     @Test
-    void getBarracks() throws InvalidTroopParamsException {
+    void shouldBeAbleToGetTrooperFromBarracks() throws InvalidTroopParamsException {
         // arrange
         inMemoryDB.insert(new Troop(1, 3, 10));
         inMemoryDB.insert(new Troop(1, 3, 10));
@@ -70,7 +70,7 @@ class InMemoryDBTest {
     }
 
     @Test
-    void updateTrainedTroop() throws InvalidTroopParamsException {
+    void shouldBeAbleToUpdateCountOfTrooper() throws InvalidTroopParamsException {
         // arrange
         Troop troop = new Troop(1, 3, 10);
         inMemoryDB.insert(troop);
@@ -84,7 +84,7 @@ class InMemoryDBTest {
     }
 
     @Test
-    void getTrainedTroops() {
+    void shouldBeAbleToGetTrainedTroop() {
         // arrange
         inMemoryDB.updateTrainedTroop(TroopType.BARBARIAN);
         inMemoryDB.updateTrainedTroop(TroopType.BARBARIAN);
